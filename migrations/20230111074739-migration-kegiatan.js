@@ -47,6 +47,9 @@ module.exports = {
         rekomendasi: {
           type: Sequelize.STRING,
         },
+        status: {
+          type: Sequelize.STRING,
+        },
         upload: {
           type: Sequelize.STRING,
         },

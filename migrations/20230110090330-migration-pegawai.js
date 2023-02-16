@@ -26,6 +26,9 @@ module.exports = {
         gol: {
           type: Sequelize.STRING,
         },
+        bidang: {
+          type: Sequelize.STRING,
+        },
         phone: {
           type: Sequelize.STRING,
         },

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const provinsi = sequelize.define(
-    "provinsi",
+  const ec_provinces = sequelize.define(
+    "ec_provinces",
     {
       prov_id: {
         type: DataTypes.INTEGER,
@@ -18,8 +18,14 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "provinsi",
+      tableName: "ec_provinces",
     }
   );
-  return provinsi;
+  ec_provinces.associate = (models) => {
+    ec_provinces.hasMany(models.ec_cities, {
+      foreignKey: "city_id",
+      as: "city",
+    });
+  };
+  return ec_provinces;
 };

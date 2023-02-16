@@ -24,6 +24,7 @@ const kotaController = require("../controllers/kotaController");
 const berkendaraController = require("../controllers/berkendara");
 const np2dController = require("../controllers/np2dController");
 const sp2dController = require("../controllers/sp2dController");
+const bidangController = require("../controllers/bidangController");
 
 /***************************AUTH********************************* */
 
@@ -210,4 +211,10 @@ router.get("/kota", kotaController.getAllKota);
 router.get("/berkendara", berkendaraController.getAllBerkendara);
 
 /***************************BERKENDARA********************************* */
+
+/***************************BIDANG********************************* */
+
+router.get("/bidang", bidangController.getAllBidang);
+
+/***************************BIDANG********************************* */
 module.exports = router;

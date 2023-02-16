@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       gol: {
         type: DataTypes.STRING,
       },
+      bidang: {
+        type: DataTypes.STRING,
+      },
       phone: {
         type: DataTypes.STRING,
       },

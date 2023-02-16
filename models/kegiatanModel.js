@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
       rekomendasi: {
         type: DataTypes.STRING,
       },
+      status: {
+        type: DataTypes.STRING,
+      },
       upload: {
         type: DataTypes.STRING,
       },

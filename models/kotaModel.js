@@ -1,19 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
-  const kota = sequelize.define(
-    "kota",
+  const ec_cities = sequelize.define(
+    "ec_cities",
     {
-      id: {
+      city_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-      nama: {
+      city_name: {
         type: DataTypes.STRING,
+      },
+      prov_id: {
+        type: DataTypes.INTEGER,
       },
     },
     {
-      tableName: "kota",
+      tableName: "ec_cities",
     }
   );
-  return kota;
+  ec_cities.associate = (models) => {
+    ec_cities.belongsTo(models.ec_provinces, {
+      foreignKey: "prov_id",
+      sourceKey: "prov_id",
+      as: "city",
+    });
+  };
+  return ec_cities;
 };

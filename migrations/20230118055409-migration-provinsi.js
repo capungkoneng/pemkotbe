@@ -2,8 +2,8 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    queryInterface
-      .createTable("provinsi", {
+    await queryInterface
+      .createTable("ec_provinces", {
         prov_id: {
           type: Sequelize.INTEGER,
           autoIncrement: true,
@@ -20,11 +20,11 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addIndex("provinsi", ["prov_id", "prov_name"])
+        queryInterface.addIndex("ec_provinces", ["prov_id", "prov_name"])
       );
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("provinsi");
+    await queryInterface.dropTable("ec_provinces");
   },
 };

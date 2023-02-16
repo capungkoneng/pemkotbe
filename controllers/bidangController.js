@@ -1,12 +1,12 @@
 const model = require("../models");
 const { Op } = require("sequelize");
 
-const getAllProv = async (req, res) => {
+const getAllBidang = async (req, res) => {
   try {
-    const result = await model.ec_provinces.findAll({
-      attributes: ["prov_id", ["prov_name", "name"]],
+    const result = await model.bidang.findAll({
+      attributes: ["id", "nama"],
     });
-    if (result) {
+    if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
       return res.status(404).json({ success: false, msg: "no data" });
@@ -17,5 +17,5 @@ const getAllProv = async (req, res) => {
 };
 
 module.exports = {
-  getAllProv,
+  getAllBidang,
 };

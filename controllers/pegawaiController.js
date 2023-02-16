@@ -70,6 +70,7 @@ const addPegawai = async (req, res) => {
         jabatan: req.body.jabatan,
         pangkat: req.body.pangkat,
         gol: req.body.gol,
+        bidang: req.body.bidang,
         phone: req.body.phone,
         nama_bank: req.body.nama_bank,
         no_rek: req.body.no_rek,
