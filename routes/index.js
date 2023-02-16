@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth");
+const upload = require("../config/cloudinary");
 
 const statusController = require("../controllers/statusController");
 const authController = require("../controllers/authController");
@@ -53,7 +54,11 @@ router.get("/pegawai/:id", pegawaiController.getOnePegawai);
 /***************************KEGIATAN********************************* */
 
 router.get("/kegiatan", kegiatanController.getAllKegiatan);
-router.post("/kegiatan", kegiatanController.addKegiatan);
+router.post(
+  "/kegiatan",
+  upload.single("upload"),
+  kegiatanController.addKegiatan
+);
 router.put("/kegiatan/:id", kegiatanController.updateKegiatan);
 router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
 router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);

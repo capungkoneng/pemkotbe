@@ -56,6 +56,9 @@ const getAllKegiatan = async (req, res) => {
 };
 
 const addKegiatan = async (req, res) => {
+  if (!req.file) {
+    return res.status(404).json({ msg: "No file" });
+  }
   try {
     // create transaction
     const transaction = await t.create();
@@ -77,7 +80,7 @@ const addKegiatan = async (req, res) => {
         tahun_anggaran: req.body.tahun_anggaran,
         keterangan: req.body.keterangan,
         rekomendasi: req.body.rekomendasi,
-        upload: req.body.upload,
+        upload: req.file.path,
         lsjabatan: req.body.lsjabatan,
       },
       {

@@ -23,6 +23,9 @@ module.exports = {
         pangkat: {
           type: Sequelize.STRING,
         },
+        gol: {
+          type: Sequelize.STRING,
+        },
         phone: {
           type: Sequelize.STRING,
         },

@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       pangkat: {
         type: DataTypes.STRING,
       },
+      gol: {
+        type: DataTypes.STRING,
+      },
       phone: {
         type: DataTypes.STRING,
       },
