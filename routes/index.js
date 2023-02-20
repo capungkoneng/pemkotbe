@@ -60,6 +60,7 @@ router.post(
   upload.single("upload"),
   kegiatanController.addKegiatan
 );
+router.post("/kegiatan", kegiatanController.addKegiatanNamaPeg)
 router.put("/kegiatan/:id", kegiatanController.updateKegiatan);
 router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
 router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);

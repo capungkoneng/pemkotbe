@@ -27,7 +27,12 @@ const getAllKegiatan = async (req, res) => {
           },
         ],
       },
-
+      include: [
+        {
+          model: model.lsjabatan,
+          as: "lsjabatan",
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
@@ -56,8 +61,19 @@ const getAllKegiatan = async (req, res) => {
 };
 
 const addKegiatan = async (req, res) => {
+  const newArrLsJabatan = [];
+
   if (!req.file) {
-    return res.status(404).json({ msg: "No file" });
+    return res.status(404).json({ msg: "tidak ada gambar" });
+  }
+
+  if (req.body.lsjabatan) {
+    const arrLsJabatan = JSON.parse(req.body.lsjabatan);
+    for (let index = 0; index < arrLsJabatan.length; index++) {
+      newArrLsJabatan.push({
+        nama: arrLsJabatan[index].nama,
+      });
+    }
   }
   try {
     // create transaction
@@ -81,10 +97,66 @@ const addKegiatan = async (req, res) => {
         keterangan: req.body.keterangan,
         rekomendasi: req.body.rekomendasi,
         upload: req.file.path,
-        lsjabatan: req.body.lsjabatan,
+        lsjabatan: newArrLsJabatan,
+        status: req.body.status_kegiatan,
       },
       {
         include: ["lsjabatan"],
+      },
+      { transaction: transaction.data }
+    );
+    // commit transaction
+    const commit = await t.commit(transaction.data);
+    if (!commit.status && commit.error) {
+      throw commit.error;
+    }
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil Nambah Data",
+        result: result,
+      });
+    } else {
+      // rollback transaction
+      await t.rollback(transaction.data);
+      res.status(404).json({
+        success: false,
+        massage: "Gagal nambah data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const addKegiatanNamaPeg = async (req, res) => {
+  try {
+    // create transaction
+    const transaction = await t.create();
+    if (!transaction.status && transaction.error) {
+      throw transaction.error;
+    }
+    const result = await model.kegiatan.create(
+      {
+        id: uuidv4(),
+        keperluan: req.body.keperluan,
+        no_surat: req.body.no_surat,
+        lokasi: req.body.lokasi,
+        tgl_berangkat: req.body.tgl_berangkat,
+        tgl_mulai: req.body.tgl_mulai,
+        tgl_selesai: req.body.tgl_selesai,
+        tujuan_provinsi: req.body.tujuan_provinsi,
+        kota: req.body.kota,
+        berangkat: req.body.berangkat,
+        tahun_anggaran: req.body.tahun_anggaran,
+        keterangan: req.body.keterangan,
+        rekomendasi: req.body.rekomendasi,
+        upload: req.file.path,
+        lsnamajbatan: req.body.lsnamajbatan,
+        status: req.body.status_kegiatan,
+      },
+      {
+        include: ["lsnamajbatan"],
       },
       { transaction: transaction.data }
     );
@@ -202,6 +274,12 @@ const getOneKegiatan = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.lsjabatan,
+          as: "lsjabatan",
+        },
+      ],
     });
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
@@ -219,4 +297,5 @@ module.exports = {
   updateKegiatan,
   deleteKegiatan,
   getOneKegiatan,
+  addKegiatanNamaPeg
 };

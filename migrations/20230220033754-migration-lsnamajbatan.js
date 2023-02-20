@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface
-      .createTable("bidang", {
+      .createTable("lsnamajbatan", {
         id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,
@@ -12,6 +12,19 @@ module.exports = {
         },
         nama: {
           type: Sequelize.STRING,
+        },
+        nama_pegawai: {
+          type: Sequelize.STRING,
+        },
+        kegiatan_id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          references: {
+            model: "kegiatan",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,
@@ -22,10 +35,10 @@ module.exports = {
           type: Sequelize.DATE,
         },
       })
-      .then(() => queryInterface.addIndex("bidang", ["id", "nama"]));
+      .then(() => queryInterface.addIndex("lsnamajbatan", ["id", "nama"]));
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("bidang");
+    await queryInterface.dropTable("lsnamajbatan");
   },
 };

@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const bidang = sequelize.define(
-    "bidang",
+    "lsnamajbatan",
     {
       id: {
         type: DataTypes.UUID,
@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       nama: {
         type: DataTypes.STRING,
+      },
+      nama_pegawai: {
+        type: DataTypes.STRING,
+      },
+      kegiatan_id: {
+        type: DataTypes.UUID,
       },
       createdAt: {
         allowNull: false,
@@ -21,8 +27,15 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "allJabatan",
+      tableName: "lsnamajbatan",
     }
   );
-  return lsjabatan;
+  lsnamajbatan.associate = (models) => {
+    lsnamajbatan.belongsTo(models.kegiatan, {
+      foreignKey: "id",
+      sourceKey: "kegiatan_id",
+      as: "lsnamajbatan",
+    });
+  };
+  return lsnamajbatan;
 };
