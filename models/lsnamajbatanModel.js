@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const bidang = sequelize.define(
+  const lsnamajbatan = sequelize.define(
     "lsnamajbatan",
     {
       id: {
