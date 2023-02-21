@@ -13,6 +13,9 @@ module.exports = {
         provinsi: {
           type: Sequelize.STRING,
         },
+        satuan: {
+          type: Sequelize.STRING,
+        },
         peselon1: {
           type: Sequelize.BIGINT,
           defaultValue: 0,

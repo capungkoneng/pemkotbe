@@ -203,10 +203,28 @@ const getOnePegawai = async (req, res) => {
   }
 };
 
+const getAllPegawaiJabatan = async (req, res) => {
+  try {
+    const result = await model.pegawai.findAll({
+      where: {
+        jabatan: req.params.jabatan,
+      },
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   getAllPegawai,
   addPegawai,
   updatePegawai,
   deletePegawai,
   getOnePegawai,
+  getAllPegawaiJabatan,
 };

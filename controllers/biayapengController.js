@@ -66,6 +66,7 @@ const addBiayaPeng = async (req, res) => {
       {
         id: uuidv4(),
         provinsi: req.body.provinsi,
+        satuan: req.body.satuan,
         peselon1: req.body.peselon1,
         peselon2: req.body.peselon2,
         g3eselon3: req.body.g3eselon3,

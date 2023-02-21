@@ -136,31 +136,21 @@ const addKegiatanNamaPeg = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.kegiatan.create(
+    const result = await model.lsnamajbatan.bulkCreate(req.body.pegawai, {
+      transaction: transaction.data,
+    });
+    // commit transaction
+    await model.kegiatan.update(
       {
-        id: uuidv4(),
-        keperluan: req.body.keperluan,
-        no_surat: req.body.no_surat,
-        lokasi: req.body.lokasi,
-        tgl_berangkat: req.body.tgl_berangkat,
-        tgl_mulai: req.body.tgl_mulai,
-        tgl_selesai: req.body.tgl_selesai,
-        tujuan_provinsi: req.body.tujuan_provinsi,
-        kota: req.body.kota,
-        berangkat: req.body.berangkat,
-        tahun_anggaran: req.body.tahun_anggaran,
-        keterangan: req.body.keterangan,
-        rekomendasi: req.body.rekomendasi,
-        upload: req.file.path,
-        lsnamajbatan: req.body.lsnamajbatan,
         status: req.body.status_kegiatan,
       },
       {
-        include: ["lsnamajbatan"],
+        where: {
+          id: req.body.id,
+        },
       },
       { transaction: transaction.data }
     );
-    // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {
       throw commit.error;
@@ -291,11 +281,35 @@ const getOneKegiatan = async (req, res) => {
   }
 };
 
+const getOneKegiatanNamaPeg = async (req, res) => {
+  try {
+    const result = await model.kegiatan.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: model.lsnamajbatan,
+          as: "lsnamajbatan",
+        },
+      ],
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   getAllKegiatan,
   addKegiatan,
   updateKegiatan,
   deleteKegiatan,
   getOneKegiatan,
-  addKegiatanNamaPeg
+  addKegiatanNamaPeg,
+  getOneKegiatanNamaPeg
 };

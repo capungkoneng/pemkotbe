@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       provinsi: {
         type: DataTypes.STRING,
       },
+      satuan: {
+        type: DataTypes.STRING,
+      },
       peselon1: {
         type: DataTypes.BIGINT,
       },

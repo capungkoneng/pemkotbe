@@ -49,6 +49,10 @@ router.post("/pegawai", pegawaiController.addPegawai);
 router.put("/pegawai/:id", pegawaiController.updatePegawai);
 router.delete("/pegawai/:id", pegawaiController.deletePegawai);
 router.get("/pegawai/:id", pegawaiController.getOnePegawai);
+router.get(
+  "/alljabat/:jabatan",
+  pegawaiController.getAllPegawaiJabatan
+);
 
 /***************************PEGAWAI********************************* */
 
@@ -60,10 +64,12 @@ router.post(
   upload.single("upload"),
   kegiatanController.addKegiatan
 );
-router.post("/kegiatan", kegiatanController.addKegiatanNamaPeg)
+router.post("/kegiatan/namapeg", kegiatanController.addKegiatanNamaPeg);
 router.put("/kegiatan/:id", kegiatanController.updateKegiatan);
 router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
 router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);
+router.get("/kegiatanNamaPeg/:id", kegiatanController.getOneKegiatanNamaPeg);
+
 
 /***************************KEGIATAN********************************* */
 
