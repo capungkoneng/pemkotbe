@@ -17,42 +17,50 @@ const getAllSpt = async (req, res) => {
       hostname,
       pathname
     );
+    let results;
     const totalRows = await model.spt.count();
-    const results = await model.spt.findAll({
-      attributes: ["kegiatan_id", "no_spt", "createdAt", "updatedAt"],
-      where: {
-        [Op.or]: [
+    if (req.query.page === undefined) {
+      results = await model.spt.findAll({
+        include: [
           {
-            no_spt: {
-              [Op.like]: "%" + search + "%",
-            },
+            model: model.kegiatan,
+            include: [
+              {
+                model: model.lsnamajbatan,
+                as: "lsnamajbatan",
+              },
+            ],
           },
         ],
-      },
-      include: [
-        {
-          model: model.kegiatan,
-          include: [
+      });
+    } else {
+      results = await model.spt.findAll({
+        attributes: ["kegiatan_id", "no_spt", "createdAt", "updatedAt"],
+        where: {
+          [Op.or]: [
             {
-              model: model.lsnamajbatan,
-              as: "lsnamajbatan",
+              no_spt: {
+                [Op.like]: "%" + search + "%",
+              },
             },
           ],
         },
-      ],
-      offset: pagination.page * pagination.perPage,
-      limit: pagination.perPage,
-      order: [["createdAt", "DESC"]],
-    });
-    // const results = await sequelize.query(
-    //   "select * from spt s join kegiatan k on k.id = s.kegiatan_id join lsnamajbatan l on k.id = l.kegiatan_id ",
-    //   {
-    //     offset: pagination.page * pagination.perPage,
-    //     limit: pagination.perPage,
-    //     order: [["createdAt", "DESC"]],
-    //     type: model.Sequelize.QueryTypes.SELECT,
-    //   }
-    // );
+        include: [
+          {
+            model: model.kegiatan,
+            include: [
+              {
+                model: model.lsnamajbatan,
+                as: "lsnamajbatan",
+              },
+            ],
+          },
+        ],
+        offset: pagination.page * pagination.perPage,
+        limit: pagination.perPage,
+        order: [["createdAt", "DESC"]],
+      });
+    }
     if (results.length > 0) {
       return res.status(200).json({
         success: true,

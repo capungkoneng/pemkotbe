@@ -16,22 +16,26 @@ const getAllPegawai = async (req, res) => {
       hostname,
       pathname
     );
+    let results;
     const totalRows = await model.pegawai.count();
-    const results = await model.pegawai.findAll({
-      where: {
-        [Op.or]: [
-          {
-            nama: {
-              [Op.like]: "%" + search + "%",
+    if (req.query.page === undefined) {
+      results = await model.pegawai.findAll();
+    } else {
+      results = await model.pegawai.findAll({
+        where: {
+          [Op.or]: [
+            {
+              nama: {
+                [Op.like]: "%" + search + "%",
+              },
             },
-          },
-        ],
-      },
-
-      offset: pagination.page * pagination.perPage,
-      limit: pagination.perPage,
-      order: [["createdAt", "DESC"]],
-    });
+          ],
+        },
+        offset: pagination.page * pagination.perPage,
+        limit: pagination.perPage,
+        order: [["createdAt", "DESC"]],
+      });
+    }
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
