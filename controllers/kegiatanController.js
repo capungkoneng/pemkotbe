@@ -60,6 +60,31 @@ const getAllKegiatan = async (req, res) => {
   }
 };
 
+const getAllKegiatanByStat = async (req, res) => {
+  try {
+    const search = req.query.search || "";
+    const results = await model.kegiatan.findAll({
+      where: {
+        status: "3",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get All Kegiatan",
+        result: results,
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const addKegiatan = async (req, res) => {
   const newArrLsJabatan = [];
 
@@ -311,5 +336,6 @@ module.exports = {
   deleteKegiatan,
   getOneKegiatan,
   addKegiatanNamaPeg,
-  getOneKegiatanNamaPeg
+  getOneKegiatanNamaPeg,
+  getAllKegiatanByStat
 };

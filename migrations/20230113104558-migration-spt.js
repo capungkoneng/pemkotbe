@@ -45,8 +45,15 @@ module.exports = {
         keterangan: {
           type: Sequelize.STRING,
         },
-        upload: {
-          type: Sequelize.STRING,
+        kegiatan_id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          references: {
+            model: "kegiatan",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,

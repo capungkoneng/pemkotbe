@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const Pagination = require("../config/pagging");
 const url = require("url");
 const t = require("../config/transaksi");
-
+const { sequelize } = require("../models");
 
 const getAllSpt = async (req, res) => {
   try {
@@ -19,6 +19,7 @@ const getAllSpt = async (req, res) => {
     );
     const totalRows = await model.spt.count();
     const results = await model.spt.findAll({
+      attributes: ["kegiatan_id", "no_spt", "createdAt", "updatedAt"],
       where: {
         [Op.or]: [
           {
@@ -28,14 +29,34 @@ const getAllSpt = async (req, res) => {
           },
         ],
       },
+      include: [
+        {
+          model: model.kegiatan,
+          include: [
+            {
+              model: model.lsnamajbatan,
+              as: "lsnamajbatan",
+            },
+          ],
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
     });
+    // const results = await sequelize.query(
+    //   "select * from spt s join kegiatan k on k.id = s.kegiatan_id join lsnamajbatan l on k.id = l.kegiatan_id ",
+    //   {
+    //     offset: pagination.page * pagination.perPage,
+    //     limit: pagination.perPage,
+    //     order: [["createdAt", "DESC"]],
+    //     type: model.Sequelize.QueryTypes.SELECT,
+    //   }
+    // );
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All Biaya Penginapan",
+        massage: "Get All Biaya Spt",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,

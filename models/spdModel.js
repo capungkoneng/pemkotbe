@@ -48,6 +48,12 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "spd",
     }
   );
+  spd.associate = (models) => {
+    spd.hasOne(models.spt, {
+      foreignKey: "no_spt",
+      sourceKey: "no_spt",
+    });
+  };
 
   return spd;
 };

@@ -5,7 +5,6 @@ const Pagination = require("../config/pagging");
 const url = require("url");
 const t = require("../config/transaksi");
 
-
 const getAllSpd = async (req, res) => {
   try {
     const search = req.query.search || "";
@@ -19,6 +18,7 @@ const getAllSpd = async (req, res) => {
     );
     const totalRows = await model.spd.count();
     const results = await model.spd.findAll({
+      attributes: ["id", "no_spd", "no_spt", "createdAt", "updatedAt"],
       where: {
         [Op.or]: [
           {
@@ -28,6 +28,23 @@ const getAllSpd = async (req, res) => {
           },
         ],
       },
+      include: [
+        {
+          model: model.spt,
+          attributes: ["id", "no_spt", "createdAt", "updatedAt"],
+          include: [
+            {
+              model: model.kegiatan,
+              include: [
+                {
+                  model: model.lsnamajbatan,
+                  as: "lsnamajbatan",
+                },
+              ],
+            },
+          ],
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
@@ -35,7 +52,7 @@ const getAllSpd = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All Biaya Penginapan",
+        massage: "Get All Spd",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
@@ -72,7 +89,7 @@ const addSpd = async (req, res) => {
         tgl_berangkat: req.body.tgl_berangkat,
         tgl_mulai: req.body.tgl_mulai,
         tgl_selesai: req.body.tgl_selesai,
-        kegiatan: req.body.kegiatan
+        kegiatan: req.body.kegiatan,
       },
       { transaction: transaction.data }
     );
@@ -141,7 +158,7 @@ const updateSpd = async (req, res) => {
   } catch (error) {
     res.status(500).json({ masagge: error.message });
   }
-}
+};
 
 const deleteSpd = async (req, res) => {
   let id = req.params.id;
@@ -182,7 +199,7 @@ const deleteSpd = async (req, res) => {
   } catch (error) {
     res.status(500).json({ masagge: error.message });
   }
-}
+};
 
 const getOneSpd = async (req, res) => {
   try {
@@ -199,12 +216,12 @@ const getOneSpd = async (req, res) => {
   } catch (error) {
     res.status(500).json({ masagge: error.message });
   }
-}
+};
 
 module.exports = {
   getAllSpd,
   addSpd,
   updateSpd,
   deleteSpd,
-  getOneSpd
+  getOneSpd,
 };

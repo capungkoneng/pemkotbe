@@ -24,6 +24,12 @@ module.exports = {
         no_spt: {
           type: Sequelize.STRING,
           unique: true,
+          references: {
+            model: "spt",
+            key: "no_spt",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         tgl_berangkat: {
           type: Sequelize.DATE,

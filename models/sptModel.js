@@ -43,8 +43,8 @@ module.exports = (sequelize, DataTypes) => {
       keterangan: {
         type: DataTypes.STRING,
       },
-      upload: {
-        type: DataTypes.STRING,
+      kegiatan_id: {
+        type: DataTypes.UUID,
       },
       createdAt: {
         allowNull: false,
@@ -59,6 +59,16 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "spt",
     }
   );
+  spt.associate = (models) => {
+    spt.hasOne(models.kegiatan, {
+      foreignKey: "id",
+      sourceKey: "kegiatan_id",
+    });
+    spt.belongsTo(models.spd, {
+      foreignKey: "no_spt",
+      sourceKey: "no_spt",
+    });
+  };
 
   return spt;
 };

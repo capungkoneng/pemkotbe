@@ -69,6 +69,8 @@ router.put("/kegiatan/:id", kegiatanController.updateKegiatan);
 router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
 router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);
 router.get("/kegiatanNamaPeg/:id", kegiatanController.getOneKegiatanNamaPeg);
+router.get("/kegiatanbystat", kegiatanController.getAllKegiatanByStat);
+
 
 
 /***************************KEGIATAN********************************* */

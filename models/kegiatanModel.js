@@ -73,6 +73,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kegiatan_id",
       as: "lsnamajbatan",
     });
+    kegiatan.belongsTo(models.spt, {
+      foreignKey: "id",
+    });
   };
 
   return kegiatan;
