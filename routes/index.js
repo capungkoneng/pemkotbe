@@ -25,6 +25,7 @@ const berkendaraController = require("../controllers/berkendara");
 const np2dController = require("../controllers/np2dController");
 const sp2dController = require("../controllers/sp2dController");
 const bidangController = require("../controllers/bidangController");
+const laporanProfileController = require("../controllers/profilLaporanController");
 
 /***************************AUTH********************************* */
 
@@ -49,10 +50,7 @@ router.post("/pegawai", pegawaiController.addPegawai);
 router.put("/pegawai/:id", pegawaiController.updatePegawai);
 router.delete("/pegawai/:id", pegawaiController.deletePegawai);
 router.get("/pegawai/:id", pegawaiController.getOnePegawai);
-router.get(
-  "/alljabat/:jabatan",
-  pegawaiController.getAllPegawaiJabatan
-);
+router.get("/alljabat/:jabatan", pegawaiController.getAllPegawaiJabatan);
 
 /***************************PEGAWAI********************************* */
 
@@ -70,8 +68,6 @@ router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
 router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);
 router.get("/kegiatanNamaPeg/:id", kegiatanController.getOneKegiatanNamaPeg);
 router.get("/kegiatanbystat", kegiatanController.getAllKegiatanByStat);
-
-
 
 /***************************KEGIATAN********************************* */
 
@@ -226,4 +222,16 @@ router.get("/berkendara", berkendaraController.getAllBerkendara);
 router.get("/bidang", bidangController.getAllBidang);
 
 /***************************BIDANG********************************* */
+
+/***************************ProfilLaporan********************************* */
+
+router.get("/lap", laporanProfileController.getAllLaporanPro);
+router.post(
+  "/sp2d",
+  upload.single("logo"),
+  laporanProfileController.addLaporanPro
+);
+
+/***************************ProfilLaporan********************************* */
+
 module.exports = router;

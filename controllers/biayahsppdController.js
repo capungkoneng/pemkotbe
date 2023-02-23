@@ -35,7 +35,7 @@ const getAllBiayaHsppd = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All Biaya Penginapan",
+        massage: "Get All Biaya Harian",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,

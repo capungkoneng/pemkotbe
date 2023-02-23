@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const lsnamajbatan = sequelize.define(
-    "lsnamajbatan",
+  const profilLaporan = sequelize.define(
+    "profilLaporan",
     {
       id: {
         type: DataTypes.UUID,
@@ -8,24 +8,35 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      nama: {
+      nama_pemerintah: {
         type: DataTypes.STRING,
       },
-      nama_pegawai: {
+      nama_kantor: {
         type: DataTypes.STRING,
       },
-      kegiatan_id: {
-        type: DataTypes.UUID,
-      },
-      pangkat: {
+      alamat: {
         type: DataTypes.STRING,
       },
-      gol: {
+      telp: {
         type: DataTypes.STRING,
       },
-      nip: {
+      website: {
         type: DataTypes.STRING,
-        unique: true,
+      },
+      email: {
+        type: DataTypes.STRING,
+      },
+      kodepos: {
+        type: DataTypes.STRING,
+      },
+      kota: {
+        type: DataTypes.STRING,
+      },
+      provinsi: {
+        type: DataTypes.STRING,
+      },
+      logo: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -37,15 +48,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "lsnamajbatan",
+      tableName: "profilLaporan",
     }
   );
-  lsnamajbatan.associate = (models) => {
-    lsnamajbatan.belongsTo(models.kegiatan, {
-      foreignKey: "id",
-      sourceKey: "kegiatan_id",
-      as: "lsnamajbatan",
-    });
-  };
-  return lsnamajbatan;
+  return profilLaporan;
 };

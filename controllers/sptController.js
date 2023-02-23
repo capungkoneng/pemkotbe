@@ -105,7 +105,7 @@ const addSpt = async (req, res) => {
         tgl_selesai: req.body.tgl_selesai,
         tahun_anggaran: req.body.tahun_anggaran,
         keterangan: req.body.keterangan,
-        upload: req.body.upload,
+        kegiatan_id: req.body.kegiatan_id,
       },
       { transaction: transaction.data }
     );

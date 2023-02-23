@@ -16,6 +16,16 @@ module.exports = {
         nama_pegawai: {
           type: Sequelize.STRING,
         },
+        pangkat: {
+          type: Sequelize.STRING,
+        },
+        gol: {
+          type: Sequelize.STRING,
+        },
+        nip: {
+          type: Sequelize.STRING,
+          unique: true,
+        },
         kegiatan_id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,

@@ -207,6 +207,23 @@ const getOneSpd = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.spt,
+          attributes: ["id", "no_spt", "createdAt", "updatedAt"],
+          include: [
+            {
+              model: model.kegiatan,
+              include: [
+                {
+                  model: model.lsnamajbatan,
+                  as: "lsnamajbatan",
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
