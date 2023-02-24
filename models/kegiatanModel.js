@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       keperluan: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       no_surat: {
         type: DataTypes.STRING,
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       keterangan: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       rekomendasi: {
         type: DataTypes.STRING,

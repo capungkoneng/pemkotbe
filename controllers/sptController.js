@@ -35,7 +35,7 @@ const getAllSpt = async (req, res) => {
       });
     } else {
       results = await model.spt.findAll({
-        attributes: ["kegiatan_id", "no_spt", "createdAt", "updatedAt"],
+        attributes: ["id", "kegiatan_id", "no_spt", "createdAt", "updatedAt"],
         where: {
           [Op.or]: [
             {
@@ -64,7 +64,7 @@ const getAllSpt = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All Biaya Spt",
+        massage: "Get All Spt",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
@@ -223,6 +223,17 @@ const getOneSpt = async (req, res) => {
       where: {
         id: req.params.id,
       },
+      include: [
+        {
+          model: model.kegiatan,
+          include: [
+            {
+              model: model.lsnamajbatan,
+              as: "lsnamajbatan",
+            },
+          ],
+        },
+      ],
     });
     if (result) {
       return res.status(200).json({ succes: true, msg: result });

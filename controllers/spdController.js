@@ -22,7 +22,7 @@ const getAllSpd = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            nama: {
+            no_spd: {
               [Op.like]: "%" + search + "%",
             },
           },

@@ -46,6 +46,7 @@ router.get(
 /***************************PEGAWAI********************************* */
 
 router.get("/pegawai", pegawaiController.getAllPegawai);
+router.get("/pegawaikepala", pegawaiController.getAllPegawaiKepala);
 router.post("/pegawai", pegawaiController.addPegawai);
 router.put("/pegawai/:id", pegawaiController.updatePegawai);
 router.delete("/pegawai/:id", pegawaiController.deletePegawai);

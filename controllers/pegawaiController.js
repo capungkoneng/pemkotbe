@@ -59,6 +59,30 @@ const getAllPegawai = async (req, res) => {
   }
 };
 
+const getAllPegawaiKepala = async (req, res) => {
+  try {
+    results = await model.pegawai.findAll({
+      where: {
+        jabatan: "Kepala Dinas",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get All Pegawai Kepala dinas",
+        result: results,
+      });
+    } else {
+      return res.status(404).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const addPegawai = async (req, res) => {
   try {
     // create transaction
@@ -231,4 +255,5 @@ module.exports = {
   deletePegawai,
   getOnePegawai,
   getAllPegawaiJabatan,
+  getAllPegawaiKepala,
 };

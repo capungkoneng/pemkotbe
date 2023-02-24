@@ -11,7 +11,7 @@ module.exports = {
           allowNull: false,
         },
         keperluan: {
-          type: Sequelize.STRING,
+          type: Sequelize.TEXT,
         },
         no_surat: {
           type: Sequelize.STRING,
@@ -42,7 +42,7 @@ module.exports = {
           type: Sequelize.STRING,
         },
         keterangan: {
-          type: Sequelize.STRING,
+          type: Sequelize.TEXT,
         },
         rekomendasi: {
           type: Sequelize.STRING,
