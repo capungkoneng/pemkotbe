@@ -47,6 +47,7 @@ router.get(
 
 router.get("/pegawai", pegawaiController.getAllPegawai);
 router.get("/pegawaikepala", pegawaiController.getAllPegawaiKepala);
+router.get("/pegawaikepalaB", pegawaiController.getAllPegawaiKepalaBidang);
 router.post("/pegawai", pegawaiController.addPegawai);
 router.put("/pegawai/:id", pegawaiController.updatePegawai);
 router.delete("/pegawai/:id", pegawaiController.deletePegawai);
@@ -226,9 +227,9 @@ router.get("/bidang", bidangController.getAllBidang);
 
 /***************************ProfilLaporan********************************* */
 
-router.get("/lap", laporanProfileController.getAllLaporanPro);
+router.get("/laporanPro", laporanProfileController.getAllLaporanPro);
 router.post(
-  "/sp2d",
+  "/laporanPro",
   upload.single("logo"),
   laporanProfileController.addLaporanPro
 );

@@ -1,5 +1,6 @@
 const model = require("../models");
 const { Op } = require("sequelize");
+const { v4: uuidv4 } = require("uuid");
 const t = require("../config/transaksi");
 
 const getAllLaporanPro = async (req, res) => {
@@ -22,7 +23,7 @@ const addLaporanPro = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.np2d.create(
+    const result = await model.profilLaporan.create(
       {
         id: uuidv4(),
         nama_pemerintah: req.body.nama_pemerintah,
