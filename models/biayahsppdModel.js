@@ -34,9 +34,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "bhsppd",
+      timestamp: true,
+      paranoid: true,
     }
   );
 

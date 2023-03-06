@@ -68,9 +68,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "sp2d",
+      timestamp: true,
+      paranoid: true,
     }
   );
   return sp2d;

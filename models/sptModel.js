@@ -54,9 +54,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "spt",
+      timestamp: true,
+      paranoid: true,
     }
   );
   spt.associate = (models) => {
@@ -66,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     spt.belongsTo(models.spd, {
       foreignKey: "no_spt",
-      sourceKey: "no_spt",
+      targetKey: "no_spt",
     });
   };
 

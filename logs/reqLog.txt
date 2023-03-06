@@ -1,2 +1,3 @@
-20230223	15:18:52	f85845e1-559f-4160-9243-0e6fb9ac6612	POST	undefined	/api/v1/kegiatan/namapeg
-20230223	15:19:16	6a1882d8-8a26-4cd3-8233-775a71f3c5d5	POST	undefined	/api/v1/kegiatan/namapeg
+20230306	13:43:00	4479db66-36b3-45ea-b236-42f9d1cb94fe	POST	undefined	/api/v1/angur
+20230306	13:43:08	a487b712-e61f-43b5-9fd5-b809b1a3f5a1	POST	undefined	/api/v1/angur
+20230306	13:50:48	f525d8dd-2487-42be-87e6-135061c08193	GET	undefined	/api/v1/unitby?kode_urusan=2.08

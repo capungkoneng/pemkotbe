@@ -43,19 +43,25 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "psppd",
+      timestamp: true,
+      paranoid: true,
     }
   );
   psppd.associate = (models) => {
     psppd.hasMany(models.vdsppd, {
       foreignKey: "psppd_id",
-      as: "vdsppd"
+      as: "vdsppd",
     });
     psppd.hasMany(models.vdbsppd, {
       foreignKey: "psppd_id",
-      as: "vdbsppd"
+      as: "vdbsppd",
     });
   };
   return psppd;

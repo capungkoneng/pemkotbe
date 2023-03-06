@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       no_rek: {
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
       },
       tujuan: {
         type: DataTypes.STRING,
@@ -68,9 +68,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "np2d",
+      timestamp: true,
+      paranoid: true,
     }
   );
   return np2d;

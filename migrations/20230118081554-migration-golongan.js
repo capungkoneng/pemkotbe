@@ -12,6 +12,14 @@ module.exports = {
         nama: {
           type: Sequelize.STRING,
         },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
       })
       .then(() => queryInterface.addIndex("golongan", ["id", "nama"]));
   },

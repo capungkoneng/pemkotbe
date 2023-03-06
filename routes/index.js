@@ -3,7 +3,6 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const upload = require("../config/cloudinary");
 
-const statusController = require("../controllers/statusController");
 const authController = require("../controllers/authController");
 const pegawaiController = require("../controllers/pegawaiController");
 const kegiatanController = require("../controllers/kegiatanController");
@@ -26,8 +25,17 @@ const np2dController = require("../controllers/np2dController");
 const sp2dController = require("../controllers/sp2dController");
 const bidangController = require("../controllers/bidangController");
 const laporanProfileController = require("../controllers/profilLaporanController");
+const urusanController = require("../controllers/urusanController");
+const unitOrController = require("../controllers/unitOrController");
+const subUnitOrController = require("../controllers/subUnitController");
+const programController = require("../controllers/programController");
+const kegiatanAnggaranController = require("../controllers/kegiatanAnggaranController");
+const subKegiatanAnggaranController = require("../controllers/subKegAnggaranController");
+const sumberPenController = require("../controllers/sumberPenController");
+const jumPenController = require("../controllers/jumPenController");
+const AnggaranUrusanController = require("../controllers/anggaranUrusanController");
 
-/***************************AUTH********************************* */
+/****************************AUTH********************************* */
 
 router.post("/signup", authController.registerNewUsers);
 router.post("/signin", authController.loginUsers);
@@ -37,149 +45,425 @@ router.delete(
   authController.logoutUsers
 );
 /***************************AUTH********************************* */
-router.get(
-  "/status",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
-  statusController.getStatus
-);
 
 /***************************PEGAWAI********************************* */
 
-router.get("/pegawai", pegawaiController.getAllPegawai);
-router.get("/pegawaikepala", pegawaiController.getAllPegawaiKepala);
-router.get("/pegawaikepalaB", pegawaiController.getAllPegawaiKepalaBidang);
-router.post("/pegawai", pegawaiController.addPegawai);
-router.put("/pegawai/:id", pegawaiController.updatePegawai);
-router.delete("/pegawai/:id", pegawaiController.deletePegawai);
-router.get("/pegawai/:id", pegawaiController.getOnePegawai);
-router.get("/alljabat/:jabatan", pegawaiController.getAllPegawaiJabatan);
+router.get(
+  "/pegawai",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.getAllPegawai
+);
+router.get(
+  "/pegawaikepala",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.getAllPegawaiKepala
+);
+router.get(
+  "/pegawaikepalaB",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.getAllPegawaiKepalaBidang
+);
+router.post(
+  "/pegawai",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.addPegawai
+);
+router.put(
+  "/pegawai/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.updatePegawai
+);
+router.delete(
+  "/pegawai/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.deletePegawai
+);
+router.get(
+  "/pegawai/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.getOnePegawai
+);
+router.get(
+  "/alljabat/:jabatan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pegawaiController.getAllPegawaiJabatan
+);
 
 /***************************PEGAWAI********************************* */
 
 /***************************KEGIATAN********************************* */
 
-router.get("/kegiatan", kegiatanController.getAllKegiatan);
+router.get(
+  "/kegiatan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.getAllKegiatan
+);
 router.post(
   "/kegiatan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
   upload.single("upload"),
   kegiatanController.addKegiatan
 );
-router.post("/kegiatan/namapeg", kegiatanController.addKegiatanNamaPeg);
-router.put("/kegiatan/:id", kegiatanController.updateKegiatan);
-router.delete("/kegiatan/:id", kegiatanController.deleteKegiatan);
-router.get("/kegiatan/:id", kegiatanController.getOneKegiatan);
-router.get("/kegiatanNamaPeg/:id", kegiatanController.getOneKegiatanNamaPeg);
-router.get("/kegiatanbystat", kegiatanController.getAllKegiatanByStat);
+router.post(
+  "/kegiatan/namapeg",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.addKegiatanNamaPeg
+);
+router.put(
+  "/kegiatan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.updateKegiatan
+);
+router.delete(
+  "/kegiatan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.deleteKegiatan
+);
+router.get(
+  "/kegiatan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.getOneKegiatan
+);
+router.get(
+  "/kegiatanNamaPeg/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.getOneKegiatanNamaPeg
+);
+router.get(
+  "/kegiatanbystat",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kegiatanController.getAllKegiatanByStat
+);
 
 /***************************KEGIATAN********************************* */
 
 /***************************BHSPPD********************************* */
 
-router.get("/bhsppd", biayahsppdController.getAllBiayaHsppd);
-router.post("/bhsppd", biayahsppdController.addBiayaHsppd);
-router.put("/bhsppd/:id", biayahsppdController.updateBiayaHsppd);
-router.delete("/bhsppd/:id", biayahsppdController.deleteBiayaHsppd);
-router.get("/bhsppd/:id", biayahsppdController.getOneBiayaHsppd);
+router.get(
+  "/bhsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayahsppdController.getAllBiayaHsppd
+);
+router.post(
+  "/bhsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayahsppdController.addBiayaHsppd
+);
+router.put(
+  "/bhsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayahsppdController.updateBiayaHsppd
+);
+router.delete(
+  "/bhsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayahsppdController.deleteBiayaHsppd
+);
+router.get(
+  "/bhsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayahsppdController.getOneBiayaHsppd
+);
 
 /***************************BHSPPD********************************* */
 
 /***************************BPSPPD********************************* */
 
-router.get("/bpsppd", biayapengController.getAllBiayaPeng);
-router.post("/bpsppd", biayapengController.addBiayaPeng);
-router.put("/bpsppd/:id", biayapengController.updateBiayaPeng);
-router.delete("/bpsppd/:id", biayapengController.deleteBiayaPeng);
-router.get("/bpsppd/:id", biayapengController.getOneBiayaPeng);
+router.get(
+  "/bpsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayapengController.getAllBiayaPeng
+);
+router.post(
+  "/bpsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayapengController.addBiayaPeng
+);
+router.put(
+  "/bpsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayapengController.updateBiayaPeng
+);
+router.delete(
+  "/bpsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayapengController.deleteBiayaPeng
+);
+router.get(
+  "/bpsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayapengController.getOneBiayaPeng
+);
 
 /***************************BHSPPD********************************* */
 
 /***************************BRLK********************************* */
 
-router.get("/brlk", biayarapatController.getAllBiayaRapat);
-router.post("/brlk", biayarapatController.addBiayaRapat);
-router.put("/brlk/:id", biayarapatController.updateBiayaRapat);
-router.delete("/brlk/:id", biayarapatController.deleteBiayaRapat);
-router.get("/brlk/:id", biayarapatController.getOneBiayaRapat);
+router.get(
+  "/brlk",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarapatController.getAllBiayaRapat
+);
+router.post(
+  "/brlk",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarapatController.addBiayaRapat
+);
+router.put(
+  "/brlk/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarapatController.updateBiayaRapat
+);
+router.delete(
+  "/brlk/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarapatController.deleteBiayaRapat
+);
+router.get(
+  "/brlk/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarapatController.getOneBiayaRapat
+);
 
 /***************************BRLK********************************* */
 
 /***************************BSKENDARAAN********************************* */
 
-router.get("/bskendaraan", biayasewaController.getAllBiayaSewa);
-router.post("/bskendaraan", biayasewaController.addBiayaSewa);
-router.put("/bskendaraan/:id", biayasewaController.updateBiayaSewa);
-router.delete("/bskendaraan/:id", biayasewaController.deleteBiayaSewa);
-router.get("/bskendaraan/:id", biayasewaController.getOneBiayaSewa);
+router.get(
+  "/bskendaraan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayasewaController.getAllBiayaSewa
+);
+router.post(
+  "/bskendaraan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayasewaController.addBiayaSewa
+);
+router.put(
+  "/bskendaraan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayasewaController.updateBiayaSewa
+);
+router.delete(
+  "/bskendaraan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayasewaController.deleteBiayaSewa
+);
+router.get(
+  "/bskendaraan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayasewaController.getOneBiayaSewa
+);
 
 /***************************BSKENDARAAN********************************* */
 
 /***************************BRSPPD********************************* */
 
-router.get("/brsppd", biayarepController.getAllBiayaRep);
-router.post("/brsppd", biayarepController.addBiayaRep);
-router.put("/brsppd/:id", biayarepController.updateBiayaRep);
-router.delete("/brsppd/:id", biayarepController.deleteBiayaRep);
-router.get("/brsppd/:id", biayarepController.getOneBiayaRep);
+router.get(
+  "/brsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarepController.getAllBiayaRep
+);
+router.post(
+  "/brsppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarepController.addBiayaRep
+);
+router.put(
+  "/brsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarepController.updateBiayaRep
+);
+router.delete(
+  "/brsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarepController.deleteBiayaRep
+);
+router.get(
+  "/brsppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  biayarepController.getOneBiayaRep
+);
 
 /***************************BRSPPD********************************* */
 
 /***************************SPD********************************* */
 
-router.get("/spd", spdController.getAllSpd);
-router.post("/spd", spdController.addSpd);
-router.put("/spd/:id", spdController.updateSpd);
-router.delete("/spd/:id", spdController.deleteSpd);
-router.get("/spd/:id", spdController.getOneSpd);
+router.get(
+  "/spd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  spdController.getAllSpd
+);
+router.post(
+  "/spd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  spdController.addSpd
+);
+router.put(
+  "/spd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  spdController.updateSpd
+);
+router.delete(
+  "/spd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  spdController.deleteSpd
+);
+router.get(
+  "/spd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  spdController.getOneSpd
+);
 
 /***************************SPD********************************* */
 
 /***************************SPT********************************* */
 
-router.get("/spt", sptController.getAllSpt);
-router.post("/spt", sptController.addSpt);
-router.put("/spt/:id", sptController.updateSpt);
-router.delete("/spt/:id", sptController.deleteSpt);
-router.get("/spt/:id", sptController.getOneSpt);
+router.get(
+  "/spt",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sptController.getAllSpt
+);
+router.post(
+  "/spt",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sptController.addSpt
+);
+router.put(
+  "/spt/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sptController.updateSpt
+);
+router.delete(
+  "/spt/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sptController.deleteSpt
+);
+router.get(
+  "/spt/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sptController.getOneSpt
+);
 
 /***************************SPT********************************* */
 
 /***************************PSPPD********************************* */
 
-router.get("/psppd", pertanggungController.getAllPsppd);
-router.post("/psppd", pertanggungController.addPsppd);
-router.put("/psppd/:id", pertanggungController.updatePsppd);
-router.delete("/psppd/:id", pertanggungController.deletePsppd);
-router.get("/psppd/:id", pertanggungController.getOnePsppd);
+router.get(
+  "/psppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pertanggungController.getAllPsppd
+);
+router.post(
+  "/psppd",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pertanggungController.addPsppd
+);
+router.put(
+  "/psppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pertanggungController.updatePsppd
+);
+router.delete(
+  "/psppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pertanggungController.deletePsppd
+);
+router.get(
+  "/psppd/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pertanggungController.getOnePsppd
+);
 
 /***************************PSPPD********************************* */
 
 /***************************KWITANSI********************************* */
 
-router.get("/kwitansi", kwitansiController.getAllKwitansi);
-router.post("/kwitansi", kwitansiController.addKwintasi);
-router.put("/kwitansi/:id", kwitansiController.updateKwintasi);
-router.delete("/kwitansi/:id", kwitansiController.deleteKwintasi);
-router.get("/kwitansi/:id", kwitansiController.getOneKwintasi);
+router.get(
+  "/kwitansi",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kwitansiController.getAllKwitansi
+);
+router.post(
+  "/kwitansi",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kwitansiController.addKwintasi
+);
+router.put(
+  "/kwitansi/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kwitansiController.updateKwintasi
+);
+router.delete(
+  "/kwitansi/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kwitansiController.deleteKwintasi
+);
+router.get(
+  "/kwitansi/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  kwitansiController.getOneKwintasi
+);
 
 /***************************KWITANSI********************************* */
 
 /***************************NP2D********************************* */
 
-router.get("/np2d", np2dController.getAllNp2d);
-router.post("/np2d", np2dController.addNp2d);
-router.put("/np2d/:id", np2dController.updateNp2d);
-router.delete("/np2d/:id", np2dController.deleteNp2d);
-router.get("/np2d/:id", np2dController.getOneNp2d);
+router.get(
+  "/np2d",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  np2dController.getAllNp2d
+);
+router.post(
+  "/np2d",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  np2dController.addNp2d
+);
+router.put(
+  "/np2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  np2dController.updateNp2d
+);
+router.delete(
+  "/np2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  np2dController.deleteNp2d
+);
+router.get(
+  "/np2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  np2dController.getOneNp2d
+);
 
 /***************************NP2D********************************* */
 
 /***************************SP2D********************************* */
 
-router.get("/sp2d", sp2dController.getAllSp2d);
-router.post("/sp2d", sp2dController.addSp2d);
-router.put("/sp2d/:id", sp2dController.updateSp2d);
-router.delete("/sp2d/:id", sp2dController.deleteSp2d);
-router.get("/sp2d/:id", sp2dController.getOneSp2d);
+router.get(
+  "/sp2d",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sp2dController.getAllSp2d
+);
+router.post(
+  "/sp2d",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sp2dController.addSp2d
+);
+router.put(
+  "/sp2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sp2dController.updateSp2d
+);
+router.delete(
+  "/sp2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sp2dController.deleteSp2d
+);
+router.get(
+  "/sp2d/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  sp2dController.getOneSp2d
+);
 
 /***************************SP2D********************************* */
 
@@ -191,19 +475,96 @@ router.get("/provinsi", provinsiController.getAllProv);
 
 /***************************JABATAN********************************* */
 
-router.get("/jabatan", jabatanController.getAllJab);
+router.get(
+  "/jabatan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  jabatanController.getAllJab
+);
+
+router.get(
+  "/jabatanAll",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  jabatanController.getAllPageJabatan
+);
+
+router.post(
+  "/jabatan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  jabatanController.addJabatan
+);
+router.put(
+  "/jabatan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  jabatanController.updateJabatan
+);
+router.delete(
+  "/jabatan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  jabatanController.deleteJabatan
+);
 
 /***************************JABATAN********************************* */
 
 /***************************GOLONGAN********************************* */
 
-router.get("/golongan", golonganController.getAllGol);
+router.get(
+  "/golongan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  golonganController.getAllGol
+);
+router.get(
+  "/golonganAll",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  golonganController.getAllPageGol
+);
+
+router.post(
+  "/golongan",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  golonganController.addGol
+);
+router.put(
+  "/golongan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  golonganController.updateGol
+);
+router.delete(
+  "/golongan/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  golonganController.deleteGol
+);
 
 /***************************GOLONGAN********************************* */
 
 /***************************PANGKAT********************************* */
 
-router.get("/pangkat", pangkatController.getAllPang);
+router.get(
+  "/pangkat",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pangkatController.getAllPang
+);
+
+router.get(
+  "/pangkatAll",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pangkatController.getAllPagePang
+);
+
+router.post(
+  "/pangkat",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pangkatController.addPang
+);
+router.put(
+  "/pangkat/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pangkatController.updatePang
+);
+router.delete(
+  "/pangkat/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  pangkatController.deletePang
+);
 
 /***************************PANGKAT********************************* */
 
@@ -215,25 +576,169 @@ router.get("/kota", kotaController.getAllKota);
 
 /***************************BERKENDARA********************************* */
 
-router.get("/berkendara", berkendaraController.getAllBerkendara);
+router.get(
+  "/berkendara",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  berkendaraController.getAllBerkendara
+);
+router.get(
+  "/berkendaraAll",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  berkendaraController.getAllPageBerkendara
+);
+router.post(
+  "/berkendara",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  berkendaraController.addJBerkendara
+);
+router.put(
+  "/berkendara/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  berkendaraController.updateBerkendara
+);
+router.delete(
+  "/berkendara/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  berkendaraController.deleteBerkendara
+);
 
 /***************************BERKENDARA********************************* */
 
 /***************************BIDANG********************************* */
 
-router.get("/bidang", bidangController.getAllBidang);
+router.get(
+  "/bidang",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  bidangController.getAllBidang
+);
+router.get(
+  "/bidangAll",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  bidangController.getAllPageBidang
+);
+router.post(
+  "/bidang",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  bidangController.addBidang
+);
+router.put(
+  "/bidang/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  bidangController.updateBidang
+);
+router.delete(
+  "/bidang/:id",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  bidangController.deleteBidang
+);
 
 /***************************BIDANG********************************* */
 
 /***************************ProfilLaporan********************************* */
 
-router.get("/laporanPro", laporanProfileController.getAllLaporanPro);
+router.get(
+  "/laporanPro",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  laporanProfileController.getAllLaporanPro
+);
 router.post(
   "/laporanPro",
+  auth.authToken({ admin: "admin", hrd: "hrd" }),
   upload.single("logo"),
   laporanProfileController.addLaporanPro
 );
 
 /***************************ProfilLaporan********************************* */
+
+/***************************Urusan********************************* */
+
+router.get("/urusan", urusanController.getAllUrusan);
+router.post("/urusan", urusanController.addUrusan);
+router.put("/urusan/:id", urusanController.updateUrusan);
+router.delete("/urusan/:id", urusanController.deleteUrusan);
+router.get("/urusanAll", urusanController.getAllPageUrusan);
+
+/***************************Urusan********************************* */
+
+/***************************Unit********************************* */
+
+router.get("/unit", unitOrController.getAllUnitOr);
+router.get("/unitby", unitOrController.getAllUnitby);
+router.post("/unit", unitOrController.addUnit);
+router.put("/unit/:id", unitOrController.updateUnit);
+router.delete("/unit/:id", unitOrController.deleteUnit);
+router.get("/unitAll", unitOrController.getAllPageUnitOr);
+
+/***************************Unit********************************* */
+
+/***************************SubUnit********************************* */
+
+router.get("/subunit", subUnitOrController.getAllSubUnit);
+router.post("/subunit", subUnitOrController.addSubUnit);
+router.put("/subunit/:id", subUnitOrController.updateSubUnit);
+router.delete("/subunit/:id", subUnitOrController.deleteSubUnit);
+router.get("/subunitAll", subUnitOrController.getAllPageSubUnit);
+
+/***************************SubUnit********************************* */
+
+/***************************Program********************************* */
+
+router.get("/program", programController.getAllProgram);
+router.post("/program", programController.addProgram);
+router.put("/program/:id", programController.updateProgram);
+router.delete("/program/:id", programController.deleteProgram);
+router.get("/programAll", programController.getAllPageProgram);
+
+/***************************Program********************************* */
+
+/***************************KegAng********************************* */
+
+router.get("/kegang", kegiatanAnggaranController.getAllkegAng);
+router.post("/kegang", kegiatanAnggaranController.addKegAng);
+router.put("/kegang/:id", kegiatanAnggaranController.updateKegAng);
+router.delete("/kegang/:id", kegiatanAnggaranController.deleteKegAng);
+router.get("/kegangAll", kegiatanAnggaranController.getAllPageKegAng);
+
+/***************************KegAng********************************* */
+
+/***************************SubKegAng********************************* */
+
+router.get("/subkegang", subKegiatanAnggaranController.getAllSubkegAng);
+router.post("/subkegang", subKegiatanAnggaranController.addSubKegAng);
+router.put("/subkegang/:id", subKegiatanAnggaranController.updateSubKegAng);
+router.delete("/subkegang/:id", subKegiatanAnggaranController.deleteSubKegAng);
+router.get("/subkegangAll", subKegiatanAnggaranController.getAllPageSubKegAng);
+
+/***************************SubKegAng********************************* */
+
+/***************************SumberPen********************************* */
+
+router.get("/sumberpen", sumberPenController.getAllSuPen);
+router.post("/sumberpen", sumberPenController.addSuPen);
+router.put("/sumberpen/:id", sumberPenController.updateSuPen);
+router.delete("/sumberpen/:id", sumberPenController.deleteSuPen);
+router.get("/sumberpenAll", sumberPenController.getAllPageSuPen);
+
+/***************************SumberPen********************************* */
+
+/***************************JumPen********************************* */
+
+router.get("/jumpen", jumPenController.getAllJumPen);
+router.post("/jumpen", jumPenController.addJumPen);
+router.put("/jumpen/:id", jumPenController.updateJumPen);
+router.delete("/jumpen/:id", jumPenController.deleteJumPen);
+router.get("/jumpenAll", jumPenController.getAllPageJumPen);
+
+/***************************JumPen********************************* */
+
+/***************************AnggaranUrusan********************************* */
+
+// router.get("/angur", AnggaranUrusanController.getAllPageAnggaranUrusan);
+router.post("/angur", AnggaranUrusanController.addAnggaranUrusan);
+router.put("/angur/:id", AnggaranUrusanController.updateAnggaranUrusan);
+router.delete("/angur/:id", AnggaranUrusanController.deleteAnggaranUrusan);
+router.get("/angurAll", AnggaranUrusanController.getAllPageAnggaranUrusan);
+
+/***************************AnggaranUrusan********************************* */
 
 module.exports = router;

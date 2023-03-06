@@ -61,6 +61,10 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
+        deletedAt: {
+          allowNull: true,
+          type: Sequelize.DATE,
+        },
       })
       .then(() => queryInterface.addIndex("kegiatan", ["id","no_surat"]));
   },

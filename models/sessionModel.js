@@ -45,7 +45,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       tableName: "sessions",
       timestamp: true,
-      paranoid: true,    }
+      paranoid: true,
+    }
   );
   session.associate = (models) => {
     session.belongsTo(models.user, {

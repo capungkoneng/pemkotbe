@@ -59,9 +59,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: "kegiatan",
+      timestamp: true,
+      paranoid: true,
     }
   );
   kegiatan.associate = (models) => {
