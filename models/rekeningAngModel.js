@@ -1,24 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-  const jumPen = sequelize.define(
-    "jumPen",
+  const rekeningAng = sequelize.define(
+    "rekeningAng",
     {
-      jumpen_id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        allowNull: false,
       },
-      nama: {
+      kode: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      atas_nama: {
         type: DataTypes.STRING,
       },
-      tahun: {
+      nama_bank: {
         type: DataTypes.STRING,
       },
-      jumlah: {
+      total: {
         type: DataTypes.BIGINT,
         defaultValue: 0,
-      },
-      sumberpen_id: {
-        type: DataTypes.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -34,16 +36,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "jumPen",
+      tableName: "rekeningAng",
       timestamp: true,
       paranoid: true,
     }
   );
-  jumPen.associate = (models) => {
-    jumPen.belongsTo(models.sumberPen, {
-      foreignKey: "sumberpen_id",
-      targetKey: "sumberpen_id",
+  rekeningAng.associate = (models) => {
+    rekeningAng.belongsTo(models.rekAnggaran, {
+      foreignKey: "kode",
+      targetKey: "kode",
     });
   };
-  return jumPen;
+  return rekeningAng;
 };

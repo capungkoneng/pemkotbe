@@ -27,7 +27,39 @@ const getAllPageAnggaranUrusan = async (req, res) => {
           },
         ],
       },
-
+      include: [
+        {
+          model: model.urusan,
+          include: [
+            {
+              model: model.rekAnggaran
+            }
+          ]
+        },
+        {
+          model: model.unitOr
+        },
+        {
+          model: model.subunit
+        },
+        {
+          model: model.program
+        },
+        {
+          model: model.kegiatanAnggaran
+        },
+        {
+          model: model.SubkegiatanAnggaran
+        },
+        {
+          model: model.sumberPen, 
+          include: [
+            {
+              model:model.jumPen
+            }
+          ],
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],

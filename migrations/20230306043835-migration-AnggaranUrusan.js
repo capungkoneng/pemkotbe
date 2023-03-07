@@ -73,15 +73,6 @@ module.exports = {
           onUpdate: "CASCADE",
           onDelete: "CASCADE",
         },
-        jumpen_id: {
-          type: Sequelize.INTEGER,
-          references: {
-            model: "jumPen",
-            key: "jumpen_id",
-          },
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE",
-        },
         tahun_anggaran: {
           type: Sequelize.TEXT,
         },

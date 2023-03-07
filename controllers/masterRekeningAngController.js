@@ -4,9 +4,9 @@ const Pagination = require("../config/pagging");
 const url = require("url");
 const t = require("../config/transaksi");
 
-const getAllJumPen = async (req, res) => {
+const getAllMasterRekAng = async (req, res) => {
   try {
-    const result = await model.jumPen.findAll({});
+    const result = await model.rekeningAng.findAll({});
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
@@ -17,7 +17,7 @@ const getAllJumPen = async (req, res) => {
   }
 };
 
-const getAllPageJumPen = async (req, res) => {
+const getAllPageMasterAng = async (req, res) => {
   try {
     const search = req.query.search || "";
     const hostname = req.headers.host;
@@ -28,12 +28,12 @@ const getAllPageJumPen = async (req, res) => {
       hostname,
       pathname
     );
-    const totalRows = await model.jumPen.count();
-    const results = await model.jumPen.findAll({
+    const totalRows = await model.rekeningAng.count();
+    const results = await model.rekeningAng.findAll({
       where: {
         [Op.or]: [
           {
-            tahun: {
+            atas_nama: {
               [Op.like]: "%" + search + "%",
             },
           },
@@ -47,7 +47,7 @@ const getAllPageJumPen = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All JumPen",
+        massage: "Get All Master Rek",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
@@ -67,14 +67,14 @@ const getAllPageJumPen = async (req, res) => {
   }
 };
 
-const addJumPen = async (req, res) => {
+const addMasterAng = async (req, res) => {
   try {
     // create transaction
     const transaction = await t.create();
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.create(req.body, {
+    const result = await model.rekeningAng.create(req.body, {
       transaction: transaction.data,
     });
     // commit transaction
@@ -101,7 +101,7 @@ const addJumPen = async (req, res) => {
   }
 };
 
-const updateJumPen = async (req, res) => {
+const updateMasterAng = async (req, res) => {
   let id = req.params.id;
   try {
     // create transaction
@@ -109,11 +109,11 @@ const updateJumPen = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.update(
+    const result = await model.rekeningAng.update(
       req.body,
       {
         where: {
-          jumpen_id: id,
+          id: id,
         },
         returning: true,
       },
@@ -144,7 +144,7 @@ const updateJumPen = async (req, res) => {
   }
 };
 
-const deleteJumPen = async (req, res) => {
+const deleteMasterAng = async (req, res) => {
   let id = req.params.id;
   try {
     // create transaction
@@ -152,10 +152,10 @@ const deleteJumPen = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.destroy(
+    const result = await model.rekeningAng.destroy(
       {
         where: {
-          jumpen_id: id,
+          id: id,
         },
       },
       { transaction: transaction.data }
@@ -185,36 +185,10 @@ const deleteJumPen = async (req, res) => {
   }
 };
 
-const getAllJumPenby = async (req, res) => {
-  const search = req.query.search || "";
-
-  try {
-    const result = await model.jumPen.findAll({
-      where: {
-        [Op.or]: [
-          {
-            sumberpen_id: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
-      },
-    });
-    if (result.length > 0) {
-      return res.status(200).json({ succes: true, msg: result });
-    } else {
-      return res.status(404).json({ success: false, msg: "no data" });
-    }
-  } catch (error) {
-    res.status(500).json({ masagge: error.message });
-  }
-};
-
 module.exports = {
-  getAllJumPen,
-  addJumPen,
-  updateJumPen,
-  deleteJumPen,
-  getAllPageJumPen,
-  getAllJumPenby
+  getAllMasterRekAng,
+  getAllPageMasterAng,
+  addMasterAng,
+  updateMasterAng,
+  deleteMasterAng,
 };

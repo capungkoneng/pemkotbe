@@ -4,9 +4,18 @@ const Pagination = require("../config/pagging");
 const url = require("url");
 const t = require("../config/transaksi");
 
-const getAllJumPen = async (req, res) => {
+const getAllRekAng = async (req, res) => {
   try {
-    const result = await model.jumPen.findAll({});
+    const result = await model.rekAnggaran.findAll({
+      include: [
+        {
+          model: model.rekeningAng,
+        },
+        {
+          model: model.detailRekAnggaran,
+        },
+      ],
+    });
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
@@ -17,7 +26,7 @@ const getAllJumPen = async (req, res) => {
   }
 };
 
-const getAllPageJumPen = async (req, res) => {
+const getAllPageRekAng = async (req, res) => {
   try {
     const search = req.query.search || "";
     const hostname = req.headers.host;
@@ -28,12 +37,12 @@ const getAllPageJumPen = async (req, res) => {
       hostname,
       pathname
     );
-    const totalRows = await model.jumPen.count();
-    const results = await model.jumPen.findAll({
+    const totalRows = await model.rekAnggaran.count();
+    const results = await model.rekAnggaran.findAll({
       where: {
         [Op.or]: [
           {
-            tahun: {
+            kode: {
               [Op.like]: "%" + search + "%",
             },
           },
@@ -47,7 +56,7 @@ const getAllPageJumPen = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All JumPen",
+        massage: "Get All rekAng",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
@@ -67,14 +76,14 @@ const getAllPageJumPen = async (req, res) => {
   }
 };
 
-const addJumPen = async (req, res) => {
+const addRekAng = async (req, res) => {
   try {
     // create transaction
     const transaction = await t.create();
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.create(req.body, {
+    const result = await model.rekAnggaran.create(req.body, {
       transaction: transaction.data,
     });
     // commit transaction
@@ -101,7 +110,7 @@ const addJumPen = async (req, res) => {
   }
 };
 
-const updateJumPen = async (req, res) => {
+const updateRekAng = async (req, res) => {
   let id = req.params.id;
   try {
     // create transaction
@@ -109,11 +118,11 @@ const updateJumPen = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.update(
+    const result = await model.rekAnggaran.update(
       req.body,
       {
         where: {
-          jumpen_id: id,
+          id: id,
         },
         returning: true,
       },
@@ -144,7 +153,7 @@ const updateJumPen = async (req, res) => {
   }
 };
 
-const deleteJumPen = async (req, res) => {
+const deleteRekAng = async (req, res) => {
   let id = req.params.id;
   try {
     // create transaction
@@ -152,10 +161,10 @@ const deleteJumPen = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.destroy(
+    const result = await model.rekAnggaran.destroy(
       {
         where: {
-          jumpen_id: id,
+          id: id,
         },
       },
       { transaction: transaction.data }
@@ -185,25 +194,34 @@ const deleteJumPen = async (req, res) => {
   }
 };
 
-const getAllJumPenby = async (req, res) => {
-  const search = req.query.search || "";
-
+const addDetailRekAng = async (req, res) => {
   try {
-    const result = await model.jumPen.findAll({
-      where: {
-        [Op.or]: [
-          {
-            sumberpen_id: {
-              [Op.like]: "%" + search + "%",
-            },
-          },
-        ],
-      },
+    // create transaction
+    const transaction = await t.create();
+    if (!transaction.status && transaction.error) {
+      throw transaction.error;
+    }
+    const result = await model.detailRekAnggaran.create(req.body, {
+      transaction: transaction.data,
     });
-    if (result.length > 0) {
-      return res.status(200).json({ succes: true, msg: result });
+    // commit transaction
+    const commit = await t.commit(transaction.data);
+    if (!commit.status && commit.error) {
+      throw commit.error;
+    }
+    if (result) {
+      res.status(201).json({
+        success: true,
+        massage: "Berhasil Nambah Data",
+        result: result,
+      });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      // rollback transaction
+      await t.rollback(transaction.data);
+      res.status(404).json({
+        success: false,
+        massage: "Gagal nambah data",
+      });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
@@ -211,10 +229,10 @@ const getAllJumPenby = async (req, res) => {
 };
 
 module.exports = {
-  getAllJumPen,
-  addJumPen,
-  updateJumPen,
-  deleteJumPen,
-  getAllPageJumPen,
-  getAllJumPenby
+  getAllRekAng,
+  getAllPageRekAng,
+  addRekAng,
+  updateRekAng,
+  deleteRekAng,
+  addDetailRekAng,
 };

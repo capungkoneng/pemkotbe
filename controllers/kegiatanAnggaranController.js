@@ -7,7 +7,7 @@ const t = require("../config/transaksi");
 const getAllkegAng = async (req, res) => {
   try {
     const result = await model.kegiatanAnggaran.findAll({
-        include: [{ model: model.SubkegiatanAnggaran }],
+      include: [{ model: model.SubkegiatanAnggaran }],
     });
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
@@ -187,10 +187,36 @@ const deleteKegAng = async (req, res) => {
   }
 };
 
+const getAllKegAngby = async (req, res) => {
+  const search = req.query.search || "";
+
+  try {
+    const result = await model.kegiatanAnggaran.findAll({
+      where: {
+        [Op.or]: [
+          {
+            kode_program: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+    });
+    if (result.length > 0) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   getAllkegAng,
   addKegAng,
   updateKegAng,
   deleteKegAng,
   getAllPageKegAng,
+  getAllKegAngby
 };

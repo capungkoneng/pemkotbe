@@ -34,7 +34,8 @@ const subKegiatanAnggaranController = require("../controllers/subKegAnggaranCont
 const sumberPenController = require("../controllers/sumberPenController");
 const jumPenController = require("../controllers/jumPenController");
 const AnggaranUrusanController = require("../controllers/anggaranUrusanController");
-
+const masterRekeningAnggaranController = require("../controllers/masterRekeningAngController");
+const rekAnggaranController = require("../controllers/rekAnggaranController");
 /****************************AUTH********************************* */
 
 router.post("/signup", authController.registerNewUsers);
@@ -653,7 +654,7 @@ router.post(
 /***************************Urusan********************************* */
 
 router.get("/urusan", urusanController.getAllUrusan);
-router.get("/urusanone/:id", urusanController.getUrusanOne)
+router.get("/urusanone/:id", urusanController.getUrusanOne);
 router.post("/urusan", urusanController.addUrusan);
 router.put("/urusan/:id", urusanController.updateUrusan);
 router.delete("/urusan/:id", urusanController.deleteUrusan);
@@ -687,6 +688,7 @@ router.get("/subunitAll", subUnitOrController.getAllPageSubUnit);
 
 router.get("/program", programController.getAllProgram);
 router.post("/program", programController.addProgram);
+router.get("/programby", programController.getAllProgramby);
 router.put("/program/:id", programController.updateProgram);
 router.delete("/program/:id", programController.deleteProgram);
 router.get("/programAll", programController.getAllPageProgram);
@@ -696,6 +698,7 @@ router.get("/programAll", programController.getAllPageProgram);
 /***************************KegAng********************************* */
 
 router.get("/kegang", kegiatanAnggaranController.getAllkegAng);
+router.get("/kegangby", kegiatanAnggaranController.getAllKegAngby);
 router.post("/kegang", kegiatanAnggaranController.addKegAng);
 router.put("/kegang/:id", kegiatanAnggaranController.updateKegAng);
 router.delete("/kegang/:id", kegiatanAnggaranController.deleteKegAng);
@@ -706,6 +709,7 @@ router.get("/kegangAll", kegiatanAnggaranController.getAllPageKegAng);
 /***************************SubKegAng********************************* */
 
 router.get("/subkegang", subKegiatanAnggaranController.getAllSubkegAng);
+router.get("/subkegangby", subKegiatanAnggaranController.getAllSubKegAngby);
 router.post("/subkegang", subKegiatanAnggaranController.addSubKegAng);
 router.put("/subkegang/:id", subKegiatanAnggaranController.updateSubKegAng);
 router.delete("/subkegang/:id", subKegiatanAnggaranController.deleteSubKegAng);
@@ -716,6 +720,7 @@ router.get("/subkegangAll", subKegiatanAnggaranController.getAllPageSubKegAng);
 /***************************SumberPen********************************* */
 
 router.get("/sumberpen", sumberPenController.getAllSuPen);
+router.get("/sumberpenby", sumberPenController.getAllSumberPenby);
 router.post("/sumberpen", sumberPenController.addSuPen);
 router.put("/sumberpen/:id", sumberPenController.updateSuPen);
 router.delete("/sumberpen/:id", sumberPenController.deleteSuPen);
@@ -726,6 +731,7 @@ router.get("/sumberpenAll", sumberPenController.getAllPageSuPen);
 /***************************JumPen********************************* */
 
 router.get("/jumpen", jumPenController.getAllJumPen);
+router.get("/jumpenby", jumPenController.getAllJumPenby);
 router.post("/jumpen", jumPenController.addJumPen);
 router.put("/jumpen/:id", jumPenController.updateJumPen);
 router.delete("/jumpen/:id", jumPenController.deleteJumPen);
@@ -735,12 +741,36 @@ router.get("/jumpenAll", jumPenController.getAllPageJumPen);
 
 /***************************AnggaranUrusan********************************* */
 
-// router.get("/angur", AnggaranUrusanController.getAllPageAnggaranUrusan);
 router.post("/angur", AnggaranUrusanController.addAnggaranUrusan);
 router.put("/angur/:id", AnggaranUrusanController.updateAnggaranUrusan);
 router.delete("/angur/:id", AnggaranUrusanController.deleteAnggaranUrusan);
 router.get("/angurAll", AnggaranUrusanController.getAllPageAnggaranUrusan);
 
-/***************************AnggaranUrusan********************************* */
+/***************************RekeningAnggaranMaster********************************* */
+
+router.get("/masterrek", masterRekeningAnggaranController.getAllMasterRekAng);
+router.post("/masterrek", masterRekeningAnggaranController.addMasterAng);
+router.put("/masterrek/:id", masterRekeningAnggaranController.updateMasterAng);
+router.delete(
+  "/masterrek/:id",
+  masterRekeningAnggaranController.deleteMasterAng
+);
+router.get(
+  "/masterrekAll",
+  masterRekeningAnggaranController.getAllPageMasterAng
+);
+
+/***************************RekeningAnggaranMaster********************************* */
+
+/***************************RekeningAnggaranUrusan********************************* */
+
+router.get("/rek", rekAnggaranController.getAllRekAng);
+router.post("/rek", rekAnggaranController.addRekAng);
+router.put("/rek/:id", rekAnggaranController.updateRekAng);
+router.delete("/rek/:id", rekAnggaranController.deleteRekAng);
+router.get("/rekAll", rekAnggaranController.getAllPageRekAng);
+router.get("/rekdetail", rekAnggaranController.addDetailRekAng);
+
+/***************************RekeningAnggaranUrusan********************************* */
 
 module.exports = router;

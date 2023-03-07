@@ -46,6 +46,14 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kode_urusan",
       targetKey: "kode_urusan",
     });
+    urusan.hasMany(models.rekAnggaran, {
+      foreignKey: "kode_urusan",
+      sourceKey: "kode_urusan",
+    });
+    urusan.belongsTo(models.rekAnggaran, {
+      foreignKey: "kode_urusan",
+      targetKey: "kode_urusan",
+    });
   };
   return urusan;
 };

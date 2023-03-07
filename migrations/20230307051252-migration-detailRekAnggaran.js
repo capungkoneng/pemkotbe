@@ -2,34 +2,33 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("rekAnggaran", {
+    await queryInterface.createTable("detailRekAnggaran", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false,
       },
-      kode: {
-        type: Sequelize.STRING,
-        references: {
-          model: "rekeningAng",
-          key: "kode",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
       keperluan: {
         type: Sequelize.TEXT,
+      },
+      jumlah_peserta: {
+        type: Sequelize.BIGINT,
+        defaultValue: 0,
+      },
+      jenis: {
+        type: Sequelize.STRING,
       },
       total: {
         type: Sequelize.BIGINT,
         defaultValue: 0,
       },
-      kode_urusan: {
-        type: Sequelize.STRING,
+      rek_id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         references: {
-          model: "urusan",
-          key: "kode_urusan",
+          model: "rekAnggaran",
+          key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
@@ -50,6 +49,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("rekAnggaran");
+    await queryInterface.dropTable("detailRekAnggaran");
   },
 };

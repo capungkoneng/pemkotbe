@@ -29,9 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       sumberpen_id: {
         type: DataTypes.INTEGER,
       },
-      jumpen_id: {
-        type: DataTypes.INTEGER,
-      },
       tahun_anggaran: {
         type: DataTypes.TEXT,
       },
@@ -74,10 +71,6 @@ module.exports = (sequelize, DataTypes) => {
     AnggaranUrusan.hasMany(models.SubkegiatanAnggaran, {
       foreignKey: "kode_sub_anggaran",
       sourceKey: "kode_sub_anggaran",
-    });
-    AnggaranUrusan.hasMany(models.jumPen, {
-      foreignKey: "jumpen_id",
-      sourceKey: "jumpen_id",
     });
     AnggaranUrusan.hasMany(models.sumberPen, {
       foreignKey: "sumberpen_id",

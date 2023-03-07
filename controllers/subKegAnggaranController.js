@@ -187,10 +187,36 @@ const deleteSubKegAng = async (req, res) => {
   }
 };
 
+const getAllSubKegAngby = async (req, res) => {
+  const search = req.query.search || "";
+
+  try {
+    const result = await model.SubkegiatanAnggaran.findAll({
+      where: {
+        [Op.or]: [
+          {
+            kode_kegiatan_anggaran: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
+        ],
+      },
+    });
+    if (result.length > 0) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   getAllSubkegAng,
   addSubKegAng,
   updateSubKegAng,
   deleteSubKegAng,
   getAllPageSubKegAng,
+  getAllSubKegAngby
 };
