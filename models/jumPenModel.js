@@ -45,8 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: "sumberpen_id",
     });
     jumPen.belongsTo(models.AnggaranUrusan, {
-      foreignKey: "jumPen_id",
-      targetKey: "jumPen_id",
+      foreignKey: "jumpen_id",
+      targetKey: "jumpen_id",
     });
   };
   return jumPen;

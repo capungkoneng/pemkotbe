@@ -7,7 +7,34 @@ const t = require("../config/transaksi");
 const getAllUrusan = async (req, res) => {
   try {
     const result = await model.urusan.findAll({
-      include: [{ model: model.unitOr }],
+      include: [
+        {
+          model: model.unitOr,
+          include: [
+            {
+              model: model.subunit,
+            },
+          ],
+        },
+        {
+          model: model.program,
+          include: [
+            {
+              model: model.kegiatanAnggaran,
+              include: [
+                {
+                  model: model.SubkegiatanAnggaran,
+                  include: [
+                    {
+                      model: model.sumberPen
+                    }
+                  ]
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
@@ -187,8 +214,59 @@ const deleteUrusan = async (req, res) => {
   }
 };
 
+const getUrusanOne = async (req, res) => {
+  try {
+    const result = await model.urusan.findOne({
+      where: {
+        urusan_id: req.params.id,
+      },
+      include: [
+        {
+          model: model.unitOr,
+          include: [
+            {
+              model: model.subunit,
+            },
+          ],
+        },
+        {
+          model: model.program,
+          include: [
+            {
+              model: model.kegiatanAnggaran,
+              include: [
+                {
+                  model: model.SubkegiatanAnggaran,
+                  include: [
+                    {
+                      model: model.sumberPen,
+                      include: [
+                        {
+                          model: model.jumPen,
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(404).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 module.exports = {
   getAllUrusan,
+  getUrusanOne,
   addUrusan,
   updateUrusan,
   deleteUrusan,

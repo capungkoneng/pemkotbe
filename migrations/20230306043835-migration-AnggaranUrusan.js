@@ -28,6 +28,15 @@ module.exports = {
           onUpdate: "CASCADE",
           onDelete: "CASCADE",
         },
+        sub_kode_unit: {
+          type: Sequelize.STRING,
+          references: {
+            model: "subunit",
+            key: "sub_kode_unit",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
+        },
         kode_program: {
           type: Sequelize.STRING,
           references: {
@@ -64,7 +73,7 @@ module.exports = {
           onUpdate: "CASCADE",
           onDelete: "CASCADE",
         },
-        jumPen_id: {
+        jumpen_id: {
           type: Sequelize.INTEGER,
           references: {
             model: "jumPen",
@@ -89,7 +98,9 @@ module.exports = {
           type: Sequelize.DATE,
         },
       })
-      .then(() => queryInterface.addIndex("AnggaranUrusan", ["id", "tahun_anggaran"]));
+      .then(() =>
+        queryInterface.addIndex("AnggaranUrusan", ["id", "tahun_anggaran"])
+      );
   },
 
   async down(queryInterface, Sequelize) {

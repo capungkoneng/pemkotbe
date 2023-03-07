@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       kode_unit: {
         type: DataTypes.STRING,
       },
+      sub_kode_unit: {
+        type: DataTypes.STRING,
+      },
       kode_program: {
         type: DataTypes.STRING,
       },
@@ -26,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       sumberpen_id: {
         type: DataTypes.INTEGER,
       },
-      jumPen_id: {
+      jumpen_id: {
         type: DataTypes.INTEGER,
       },
       tahun_anggaran: {
@@ -73,12 +76,16 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "kode_sub_anggaran",
     });
     AnggaranUrusan.hasMany(models.jumPen, {
-      foreignKey: "jumPen_id",
-      sourceKey: "jumPen_id",
+      foreignKey: "jumpen_id",
+      sourceKey: "jumpen_id",
     });
     AnggaranUrusan.hasMany(models.sumberPen, {
       foreignKey: "sumberpen_id",
       sourceKey: "sumberpen_id",
+    });
+    AnggaranUrusan.hasMany(models.subunit, {
+      foreignKey: "sub_kode_unit",
+      sourceKey: "sub_kode_unit",
     });
   };
   return AnggaranUrusan;

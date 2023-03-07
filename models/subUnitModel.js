@@ -41,6 +41,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kode_unit",
       targetKey: "kode_unit",
     });
+    subunit.belongsTo(models.AnggaranUrusan, {
+      foreignKey: "sub_kode_unit",
+      targetKey: "sub_kode_unit",
+    });
   };
   return subunit;
 };

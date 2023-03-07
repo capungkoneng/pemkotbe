@@ -21,7 +21,7 @@ const getAllPageAnggaranUrusan = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            Urusan: {
+            kode_urusan: {
               [Op.like]: "%" + search + "%",
             },
           },

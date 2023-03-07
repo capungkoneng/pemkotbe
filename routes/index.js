@@ -653,6 +653,7 @@ router.post(
 /***************************Urusan********************************* */
 
 router.get("/urusan", urusanController.getAllUrusan);
+router.get("/urusanone/:id", urusanController.getUrusanOne)
 router.post("/urusan", urusanController.addUrusan);
 router.put("/urusan/:id", urusanController.updateUrusan);
 router.delete("/urusan/:id", urusanController.deleteUrusan);
@@ -674,6 +675,7 @@ router.get("/unitAll", unitOrController.getAllPageUnitOr);
 /***************************SubUnit********************************* */
 
 router.get("/subunit", subUnitOrController.getAllSubUnit);
+router.get("/subunitby", subUnitOrController.getAllSubUnitby);
 router.post("/subunit", subUnitOrController.addSubUnit);
 router.put("/subunit/:id", subUnitOrController.updateSubUnit);
 router.delete("/subunit/:id", subUnitOrController.deleteSubUnit);
