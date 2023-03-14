@@ -74,7 +74,7 @@ const getAllSpt = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -106,6 +106,7 @@ const addSpt = async (req, res) => {
         tahun_anggaran: req.body.tahun_anggaran,
         keterangan: req.body.keterangan,
         kegiatan_id: req.body.kegiatan_id,
+        status: req.body.status,
       },
       { transaction: transaction.data }
     );
@@ -123,7 +124,7 @@ const addSpt = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal nambah data",
       });
@@ -166,7 +167,7 @@ const updateSpt = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal update data",
       });
@@ -207,7 +208,7 @@ const deleteSpt = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal Hapus data",
       });
@@ -238,11 +239,40 @@ const getOneSpt = async (req, res) => {
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
   }
+};
+
+const getSptByuser = async (req, res) => {
+  try {
+    const result = await model.spt.findOne({
+      where: {
+        status: "0",
+      },
+      include: [
+        {
+          model: model.kegiatan,
+          include: [
+            {
+              model: model.lsnamajbatan,
+              as: "lsnamajbatan",
+              where: {
+                nip: req.params.nip,
+              },
+            },
+          ],
+        },
+      ],
+    });
+    if (result) {
+      return res.status(200).json({ succes: true, msg: result });
+    } else {
+      return res.status(400).json({ success: false, msg: "no data" });
+    }
+  } catch (error) {}
 };
 
 module.exports = {
@@ -251,4 +281,5 @@ module.exports = {
   updateSpt,
   deleteSpt,
   getOneSpt,
+  getSptByuser
 };

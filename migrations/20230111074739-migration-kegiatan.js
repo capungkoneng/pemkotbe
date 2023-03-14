@@ -49,6 +49,7 @@ module.exports = {
         },
         status: {
           type: Sequelize.STRING,
+          defaultValue: "0"
         },
         upload: {
           type: Sequelize.STRING,

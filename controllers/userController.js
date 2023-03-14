@@ -111,15 +111,15 @@ const forgotPass = async (req, res) => {
     });
     var decode = jwt_decode(token);
     const data = `<div style="top:10px;">
-    <div style="position: absolute; left: 40%; margin-left: -40px; width: 30%; height: auto; background-color: #3F7459; color: #FFF;">
+    <div style="width: 100%; height: 50%; background-color: #3F7459; color: #FFF;">
         <h3 style="text-align: center;">SPPD</h3>
         <h4 style="margin-left: 5px">Hello, ${oldUser.username}</h4>
         <h5 style="margin-left: 5px">Anda baru-baru ini meminta untuk mengatur ulang kata sandi untuk akun Anda. Gunakan
             tombol di bawah untuk mengatur ulang. Reset kata sandi ini hanya berlaku selama 24 jam ke depan.
         </h5>
         <br />
-        <div style="margin-left: 30%; width: auto; margin-bottom: 40px;">
-            <a href="${process.env.client_url}/resetpassword/${token}" style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block;color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box;" target="_blank">Reset your password</a>
+        <div style="margin-left: 45%; width: auto; margin-bottom: 40px;">
+            <a href=${process.env.client_url}/resetpassword/${token} style="background-color: #3869D4; border-top: 10px solid #3869D4; border-right: 18px solid #3869D4; border-bottom: 10px solid #3869D4; border-left: 18px solid #3869D4; display: inline-block;color: #FFF; text-decoration: none; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); -webkit-text-size-adjust: none; box-sizing: border-box;" target="_blank">Reset your password</a>
         </div>
     </div>
 </div>`;
@@ -137,7 +137,7 @@ const forgotPass = async (req, res) => {
 
     var mailOptions = {
       from: "capungkoneng@@gmail.com",
-      to: "tedi.suryadi77@gmail.com",
+      to: oldUser.email,
       subject: "Sending Email using Node.js",
       html: data,
       text: oldUser.email,

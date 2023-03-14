@@ -35,9 +35,17 @@ const registerNewUsers = async (req, res) => {
 const loginUsers = async (req, res) => {
   try {
     const user = await model.user.findOne({
-      attributes: ["id", "password", "username"],
+      attributes: ["id", "password", "username", "role_name"],
       where: { username: req.body.username },
     });
+    const pegawai = await model.pegawai.findOne({
+      attributes: ["nama"],
+      where: { nip: req.body.username },
+    });
+    let name = null;
+    if (pegawai) {
+      name = pegawai.nama;
+    }
 
     if (!user) {
       return res.status(403).json("username tidak ada / belum daftar");
@@ -61,6 +69,7 @@ const loginUsers = async (req, res) => {
     const Resresult = {
       id: user.id,
       username: user.username,
+      pegawai: name,
       role_name: user.role_name,
       session: userSession,
     };

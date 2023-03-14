@@ -42,6 +42,11 @@ module.exports = {
         nama_rek: {
           type: Sequelize.STRING,
         },
+        email: {
+          type: Sequelize.STRING,
+          email: true,
+          allowNull: false,
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,

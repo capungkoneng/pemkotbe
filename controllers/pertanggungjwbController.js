@@ -54,7 +54,7 @@ const getAllPsppd = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -104,7 +104,7 @@ const addPsppd = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal nambah data",
       });

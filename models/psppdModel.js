@@ -63,6 +63,14 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "psppd_id",
       as: "vdbsppd",
     });
+    psppd.hasMany(models.docppsppd, {
+      foreignKey: "psppd",
+      sourceKey: "id",
+    });
+    psppd.hasMany(models.rincianpsppd, {
+      foreignKey: "psppd",
+      sourceKey: "id",
+    });
   };
   return psppd;
 };

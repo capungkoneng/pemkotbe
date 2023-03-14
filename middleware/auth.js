@@ -25,7 +25,8 @@ function authToken(roles) {
             if (
               result.role_name === roles.admin ||
               result.role_name === roles.hrd ||
-              result.role_name === roles.it
+              result.role_name === roles.it ||
+              result.role_name === roles.pegawai
             ) {
               next();
             } else {

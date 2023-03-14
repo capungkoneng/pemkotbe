@@ -10,7 +10,7 @@ const getAllJumPen = async (req, res) => {
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
@@ -57,7 +57,7 @@ const getAllPageJumPen = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -91,7 +91,7 @@ const addJumPen = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal nambah data",
       });
@@ -134,7 +134,7 @@ const updateJumPen = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal update data",
       });
@@ -175,7 +175,7 @@ const deleteJumPen = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal Hapus data",
       });
@@ -203,7 +203,7 @@ const getAllJumPenby = async (req, res) => {
     if (result.length > 0) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });

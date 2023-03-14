@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 const Pagination = require("../config/pagging");
 const url = require("url");
+const argon2 = require("argon2");
 const t = require("../config/transaksi");
 
 const getAllPegawai = async (req, res) => {
@@ -49,7 +50,7 @@ const getAllPegawai = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -73,7 +74,7 @@ const getAllPegawaiKepala = async (req, res) => {
         result: results,
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -97,7 +98,7 @@ const getAllPegawaiKepalaBidang = async (req, res) => {
         result: results,
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -118,7 +119,7 @@ const addPegawai = async (req, res) => {
       {
         id: uuidv4(),
         nama: req.body.nama,
-        nip: req.body.nip,
+        nip: req.body.nip.toString(),
         jabatan: req.body.jabatan,
         pangkat: req.body.pangkat,
         gol: req.body.gol,
@@ -127,9 +128,18 @@ const addPegawai = async (req, res) => {
         nama_bank: req.body.nama_bank,
         no_rek: req.body.no_rek,
         nama_rek: req.body.nama_rek,
+        email: req.body.email,
       },
       { transaction: transaction.data }
     );
+    const hashpass = await argon2.hash(req.body.nip);
+    await model.user.create({
+      role_name: "Pegawai",
+      username: req.body.nip.toS,
+      password: hashpass,
+      email: req.body.email,
+      phone: req.body.phone,
+    });
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {
@@ -144,7 +154,7 @@ const addPegawai = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal nambah data",
       });
@@ -187,7 +197,7 @@ const updatePegawai = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal update data",
       });
@@ -228,7 +238,7 @@ const deletePegawai = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal Hapus data",
       });
@@ -248,7 +258,7 @@ const getOnePegawai = async (req, res) => {
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
@@ -265,7 +275,7 @@ const getAllPegawaiJabatan = async (req, res) => {
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });

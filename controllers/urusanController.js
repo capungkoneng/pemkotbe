@@ -39,7 +39,7 @@ const getAllUrusan = async (req, res) => {
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });
@@ -86,7 +86,7 @@ const getAllPageUrusan = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(404).json({
+      return res.status(400).json({
         success: false,
         massage: "No data",
       });
@@ -120,7 +120,7 @@ const addUrusan = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal nambah data",
       });
@@ -163,7 +163,7 @@ const updateUrusan = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal update data",
       });
@@ -204,7 +204,7 @@ const deleteUrusan = async (req, res) => {
     } else {
       // rollback transaction
       await t.rollback(transaction.data);
-      res.status(404).json({
+      res.status(406).json({
         success: false,
         massage: "Gagal Hapus data",
       });
@@ -257,7 +257,7 @@ const getUrusanOne = async (req, res) => {
     if (result) {
       return res.status(200).json({ succes: true, msg: result });
     } else {
-      return res.status(404).json({ success: false, msg: "no data" });
+      return res.status(400).json({ success: false, msg: "no data" });
     }
   } catch (error) {
     res.status(500).json({ masagge: error.message });

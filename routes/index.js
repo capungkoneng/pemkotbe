@@ -43,7 +43,7 @@ router.post("/signup", authController.registerNewUsers);
 router.post("/signin", authController.loginUsers);
 router.delete(
   "/signout",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   authController.logoutUsers
 );
 /***************************AUTH********************************* */
@@ -54,49 +54,48 @@ router.post("/changepass", userController.updateUser);
 router.post("/forgotpass", userController.forgotPass);
 router.post("/changepassbyid", userController.changePassById);
 
-
 /***************************USER********************************* */
 
 /***************************PEGAWAI********************************* */
 
 router.get(
   "/pegawai",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.getAllPegawai
 );
 router.get(
   "/pegawaikepala",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.getAllPegawaiKepala
 );
 router.get(
   "/pegawaikepalaB",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.getAllPegawaiKepalaBidang
 );
 router.post(
   "/pegawai",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.addPegawai
 );
 router.put(
   "/pegawai/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.updatePegawai
 );
 router.delete(
   "/pegawai/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.deletePegawai
 );
 router.get(
   "/pegawai/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.getOnePegawai
 );
 router.get(
   "/alljabat/:jabatan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pegawaiController.getAllPegawaiJabatan
 );
 
@@ -106,43 +105,43 @@ router.get(
 
 router.get(
   "/kegiatan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.getAllKegiatan
 );
 router.post(
   "/kegiatan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   upload.single("upload"),
   kegiatanController.addKegiatan
 );
 router.post(
   "/kegiatan/namapeg",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.addKegiatanNamaPeg
 );
 router.put(
   "/kegiatan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.updateKegiatan
 );
 router.delete(
   "/kegiatan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.deleteKegiatan
 );
 router.get(
   "/kegiatan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.getOneKegiatan
 );
 router.get(
   "/kegiatanNamaPeg/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.getOneKegiatanNamaPeg
 );
 router.get(
   "/kegiatanbystat",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kegiatanController.getAllKegiatanByStat
 );
 
@@ -152,27 +151,27 @@ router.get(
 
 router.get(
   "/bhsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayahsppdController.getAllBiayaHsppd
 );
 router.post(
   "/bhsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayahsppdController.addBiayaHsppd
 );
 router.put(
   "/bhsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayahsppdController.updateBiayaHsppd
 );
 router.delete(
   "/bhsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayahsppdController.deleteBiayaHsppd
 );
 router.get(
   "/bhsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayahsppdController.getOneBiayaHsppd
 );
 
@@ -182,27 +181,27 @@ router.get(
 
 router.get(
   "/bpsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayapengController.getAllBiayaPeng
 );
 router.post(
   "/bpsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayapengController.addBiayaPeng
 );
 router.put(
   "/bpsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayapengController.updateBiayaPeng
 );
 router.delete(
   "/bpsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayapengController.deleteBiayaPeng
 );
 router.get(
   "/bpsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayapengController.getOneBiayaPeng
 );
 
@@ -212,27 +211,27 @@ router.get(
 
 router.get(
   "/brlk",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarapatController.getAllBiayaRapat
 );
 router.post(
   "/brlk",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarapatController.addBiayaRapat
 );
 router.put(
   "/brlk/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarapatController.updateBiayaRapat
 );
 router.delete(
   "/brlk/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarapatController.deleteBiayaRapat
 );
 router.get(
   "/brlk/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarapatController.getOneBiayaRapat
 );
 
@@ -242,27 +241,27 @@ router.get(
 
 router.get(
   "/bskendaraan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayasewaController.getAllBiayaSewa
 );
 router.post(
   "/bskendaraan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayasewaController.addBiayaSewa
 );
 router.put(
   "/bskendaraan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayasewaController.updateBiayaSewa
 );
 router.delete(
   "/bskendaraan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayasewaController.deleteBiayaSewa
 );
 router.get(
   "/bskendaraan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayasewaController.getOneBiayaSewa
 );
 
@@ -272,27 +271,27 @@ router.get(
 
 router.get(
   "/brsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarepController.getAllBiayaRep
 );
 router.post(
   "/brsppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarepController.addBiayaRep
 );
 router.put(
   "/brsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarepController.updateBiayaRep
 );
 router.delete(
   "/brsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarepController.deleteBiayaRep
 );
 router.get(
   "/brsppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   biayarepController.getOneBiayaRep
 );
 
@@ -302,27 +301,27 @@ router.get(
 
 router.get(
   "/spd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   spdController.getAllSpd
 );
 router.post(
   "/spd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   spdController.addSpd
 );
 router.put(
   "/spd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   spdController.updateSpd
 );
 router.delete(
   "/spd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   spdController.deleteSpd
 );
 router.get(
   "/spd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   spdController.getOneSpd
 );
 
@@ -332,28 +331,33 @@ router.get(
 
 router.get(
   "/spt",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sptController.getAllSpt
 );
 router.post(
   "/spt",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sptController.addSpt
 );
 router.put(
   "/spt/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sptController.updateSpt
 );
 router.delete(
   "/spt/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sptController.deleteSpt
 );
 router.get(
   "/spt/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sptController.getOneSpt
+);
+router.get(
+  "/sptbyuser/:nip",
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
+  sptController.getSptByuser
 );
 
 /***************************SPT********************************* */
@@ -362,27 +366,27 @@ router.get(
 
 router.get(
   "/psppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pertanggungController.getAllPsppd
 );
 router.post(
   "/psppd",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pertanggungController.addPsppd
 );
 router.put(
   "/psppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pertanggungController.updatePsppd
 );
 router.delete(
   "/psppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pertanggungController.deletePsppd
 );
 router.get(
   "/psppd/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pertanggungController.getOnePsppd
 );
 
@@ -392,27 +396,27 @@ router.get(
 
 router.get(
   "/kwitansi",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kwitansiController.getAllKwitansi
 );
 router.post(
   "/kwitansi",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kwitansiController.addKwintasi
 );
 router.put(
   "/kwitansi/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kwitansiController.updateKwintasi
 );
 router.delete(
   "/kwitansi/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kwitansiController.deleteKwintasi
 );
 router.get(
   "/kwitansi/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   kwitansiController.getOneKwintasi
 );
 
@@ -422,27 +426,27 @@ router.get(
 
 router.get(
   "/np2d",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   np2dController.getAllNp2d
 );
 router.post(
   "/np2d",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   np2dController.addNp2d
 );
 router.put(
   "/np2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   np2dController.updateNp2d
 );
 router.delete(
   "/np2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   np2dController.deleteNp2d
 );
 router.get(
   "/np2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   np2dController.getOneNp2d
 );
 
@@ -452,27 +456,27 @@ router.get(
 
 router.get(
   "/sp2d",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sp2dController.getAllSp2d
 );
 router.post(
   "/sp2d",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sp2dController.addSp2d
 );
 router.put(
   "/sp2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sp2dController.updateSp2d
 );
 router.delete(
   "/sp2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sp2dController.deleteSp2d
 );
 router.get(
   "/sp2d/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   sp2dController.getOneSp2d
 );
 
@@ -488,29 +492,29 @@ router.get("/provinsi", provinsiController.getAllProv);
 
 router.get(
   "/jabatan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   jabatanController.getAllJab
 );
 
 router.get(
   "/jabatanAll",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   jabatanController.getAllPageJabatan
 );
 
 router.post(
   "/jabatan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   jabatanController.addJabatan
 );
 router.put(
   "/jabatan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   jabatanController.updateJabatan
 );
 router.delete(
   "/jabatan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   jabatanController.deleteJabatan
 );
 
@@ -520,28 +524,28 @@ router.delete(
 
 router.get(
   "/golongan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   golonganController.getAllGol
 );
 router.get(
   "/golonganAll",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   golonganController.getAllPageGol
 );
 
 router.post(
   "/golongan",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   golonganController.addGol
 );
 router.put(
   "/golongan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   golonganController.updateGol
 );
 router.delete(
   "/golongan/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   golonganController.deleteGol
 );
 
@@ -551,29 +555,29 @@ router.delete(
 
 router.get(
   "/pangkat",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pangkatController.getAllPang
 );
 
 router.get(
   "/pangkatAll",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pangkatController.getAllPagePang
 );
 
 router.post(
   "/pangkat",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pangkatController.addPang
 );
 router.put(
   "/pangkat/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pangkatController.updatePang
 );
 router.delete(
   "/pangkat/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   pangkatController.deletePang
 );
 
@@ -589,27 +593,27 @@ router.get("/kota", kotaController.getAllKota);
 
 router.get(
   "/berkendara",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   berkendaraController.getAllBerkendara
 );
 router.get(
   "/berkendaraAll",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   berkendaraController.getAllPageBerkendara
 );
 router.post(
   "/berkendara",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   berkendaraController.addJBerkendara
 );
 router.put(
   "/berkendara/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   berkendaraController.updateBerkendara
 );
 router.delete(
   "/berkendara/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   berkendaraController.deleteBerkendara
 );
 
@@ -619,27 +623,27 @@ router.delete(
 
 router.get(
   "/bidang",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   bidangController.getAllBidang
 );
 router.get(
   "/bidangAll",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   bidangController.getAllPageBidang
 );
 router.post(
   "/bidang",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   bidangController.addBidang
 );
 router.put(
   "/bidang/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   bidangController.updateBidang
 );
 router.delete(
   "/bidang/:id",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   bidangController.deleteBidang
 );
 
@@ -649,12 +653,12 @@ router.delete(
 
 router.get(
   "/laporanPro",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   laporanProfileController.getAllLaporanPro
 );
 router.post(
   "/laporanPro",
-  auth.authToken({ admin: "admin", hrd: "hrd" }),
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
   upload.single("logo"),
   laporanProfileController.addLaporanPro
 );

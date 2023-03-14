@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const pegawai = sequelize.define(
-    "pegawai",
+  const rincianpsppd = sequelize.define(
+    "rincianpsppd",
     {
       id: {
         type: DataTypes.UUID,
@@ -8,42 +8,28 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      nama: {
+      psppd: {
+        type: DataTypes.UUID,
+      },
+      kode_rek: {
         type: DataTypes.STRING,
       },
-      nip: {
-        type: DataTypes.STRING,
-        unique: true,
+      keterangan: {
+        type: DataTypes.TEXT,
       },
-      jabatan: {
-        type: DataTypes.STRING,
-      },
-      pangkat: {
+      satuan: {
         type: DataTypes.STRING,
       },
-      gol: {
+      vol: {
+        type: DataTypes.BIGINT,
+        defaultValue: 0,
+      },
+      satuan: {
         type: DataTypes.STRING,
       },
-      bidang: {
-        type: DataTypes.STRING,
-      },
-      phone: {
-        type: DataTypes.STRING,
-      },
-      nama_bank: {
-        type: DataTypes.STRING,
-      },
-      no_rek: {
-        type: DataTypes.STRING,
-        unique: true,
-      },
-      nama_rek: {
-        type: DataTypes.STRING,
-      },
-      email: {
-        type: DataTypes.STRING,
-        email: true,
-        allowNull: false,
+      biaya: {
+        type: DataTypes.BIGINT,
+        defaultValue: 0,
       },
       createdAt: {
         allowNull: false,
@@ -59,11 +45,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: "pegawai",
+      tableName: "rincianpsppd",
       timestamp: true,
       paranoid: true,
     }
   );
-
-  return pegawai;
+  rincianpsppd.associate = (models) => {
+    rincianpsppd.belongsTo(models.psppd, {
+      foreignKey: "id",
+      targetKey: "psppd",
+    });
+  };
+  return rincianpsppd;
 };

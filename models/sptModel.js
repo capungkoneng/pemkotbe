@@ -46,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       kegiatan_id: {
         type: DataTypes.UUID,
       },
+      status: {
+        type: DataTypes.STRING,
+        defaultValue: "0",
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
