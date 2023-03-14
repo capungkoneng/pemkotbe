@@ -30,33 +30,36 @@ const getAllPageAnggaranUrusan = async (req, res) => {
       include: [
         {
           model: model.urusan,
+        },
+        {
+          model: model.unitOr,
+        },
+        {
+          model: model.subunit,
+        },
+        {
+          model: model.program,
+        },
+        {
+          model: model.kegiatanAnggaran,
+        },
+        {
+          model: model.SubkegiatanAnggaran,
+        },
+        {
+          model: model.sumberPen,
           include: [
             {
-              model: model.rekAnggaran
-            }
-          ]
-        },
-        {
-          model: model.unitOr
-        },
-        {
-          model: model.subunit
-        },
-        {
-          model: model.program
-        },
-        {
-          model: model.kegiatanAnggaran
-        },
-        {
-          model: model.SubkegiatanAnggaran
-        },
-        {
-          model: model.sumberPen, 
-          include: [
+              model: model.jumPen,
+            },
             {
-              model:model.jumPen
-            }
+              model: model.rekAnggaran,
+              include: [
+                {
+                  model: model.detailRekAnggaran,
+                },
+              ],
+            },
           ],
         },
       ],
@@ -94,9 +97,20 @@ const addAnggaranUrusan = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.AnggaranUrusan.create(req.body, {
+    let result;
+    result = await model.AnggaranUrusan.create(req.body, {
       transaction: transaction.data,
     });
+
+    const coba = await model.rekAnggaran.bulkCreate(
+      req.body.rekAnggaran,
+      {
+        include: [model.detailRekAnggaran],
+      },
+      {
+        transaction: transaction.data,
+      }
+    );
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {
@@ -106,7 +120,7 @@ const addAnggaranUrusan = async (req, res) => {
       res.status(201).json({
         success: true,
         massage: "Berhasil Nambah Data",
-        result: result,
+        result: { result, rekAnggaran: coba },
       });
     } else {
       // rollback transaction
@@ -129,7 +143,7 @@ const updateAnggaranUrusan = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.update(
+    const result = await model.AnggaranUrusan.update(
       req.body,
       {
         where: {
@@ -172,7 +186,7 @@ const deleteAnggaranUrusan = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.jumPen.destroy(
+    const result = await model.AnggaranUrusan.destroy(
       {
         where: {
           jumpen_id: id,

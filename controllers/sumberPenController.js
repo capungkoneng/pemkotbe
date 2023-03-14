@@ -7,7 +7,7 @@ const t = require("../config/transaksi");
 const getAllSuPen = async (req, res) => {
   try {
     const result = await model.sumberPen.findAll({
-      include: [{ model: model.jumPen }],
+      include: [{ model: model.jumPen }, {model: model.rekAnggaran}],
     });
     if (result.length) {
       return res.status(200).json({ succes: true, msg: result });

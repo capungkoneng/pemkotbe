@@ -9,6 +9,9 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
+      judul: {
+        type: Sequelize.TEXT,
+      },
       keperluan: {
         type: Sequelize.TEXT,
       },
@@ -19,7 +22,11 @@ module.exports = {
       jenis: {
         type: Sequelize.STRING,
       },
-      total: {
+      jumlah: {
+        type: Sequelize.BIGINT,
+        defaultValue: 0,
+      },
+      grandtotal: {
         type: Sequelize.BIGINT,
         defaultValue: 0,
       },

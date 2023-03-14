@@ -25,11 +25,11 @@ module.exports = {
         type: Sequelize.BIGINT,
         defaultValue: 0,
       },
-      kode_urusan: {
-        type: Sequelize.STRING,
+      sumberpen_id: {
+        type: Sequelize.INTEGER,
         references: {
-          model: "urusan",
-          key: "kode_urusan",
+          model: "sumberPen",
+          key: "sumberpen_id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",

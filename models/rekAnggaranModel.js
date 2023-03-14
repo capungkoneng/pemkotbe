@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
         defaultValue: 0,
       },
-      kode_urusan: {
-        type: DataTypes.STRING,
+      sumberpen_id: {
+        type: DataTypes.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -45,13 +45,13 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kode",
       sourceKey: "kode",
     });
-    rekAnggaran.hasOne(models.urusan, {
-      foreignKey: "kode_urusan",
-      sourceKey: "kode_urusan",
+    rekAnggaran.hasOne(models.sumberPen, {
+      foreignKey: "sumberpen_id",
+      sourceKey: "sumberpen_id",
     });
-    rekAnggaran.belongsTo(models.urusan, {
-      foreignKey: "kode_urusan",
-      targetKey: "kode_urusan",
+    rekAnggaran.belongsTo(models.sumberPen, {
+      foreignKey: "sumberpen_id",
+      targetKey: "sumberpen_id",
     });
     rekAnggaran.hasMany(models.detailRekAnggaran, {
       foreignKey: "rek_id",

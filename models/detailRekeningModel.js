@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
+      judul: {
+        type: DataTypes.TEXT,
+      },
       keperluan: {
         type: DataTypes.TEXT,
       },
@@ -15,10 +18,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
         defaultValue: 0,
       },
+      jumlah: {
+        type: DataTypes.BIGINT,
+        defaultValue: 0,
+      },
       jenis: {
         type: DataTypes.STRING,
       },
-      total: {
+      grandtotal: {
         type: DataTypes.BIGINT,
         defaultValue: 0,
       },

@@ -36,6 +36,7 @@ const jumPenController = require("../controllers/jumPenController");
 const AnggaranUrusanController = require("../controllers/anggaranUrusanController");
 const masterRekeningAnggaranController = require("../controllers/masterRekeningAngController");
 const rekAnggaranController = require("../controllers/rekAnggaranController");
+const userController = require("../controllers/userController");
 /****************************AUTH********************************* */
 
 router.post("/signup", authController.registerNewUsers);
@@ -46,6 +47,15 @@ router.delete(
   authController.logoutUsers
 );
 /***************************AUTH********************************* */
+
+/****************************USER********************************* */
+
+router.post("/changepass", userController.updateUser);
+router.post("/forgotpass", userController.forgotPass);
+router.post("/changepassbyid", userController.changePassById);
+
+
+/***************************USER********************************* */
 
 /***************************PEGAWAI********************************* */
 
