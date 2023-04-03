@@ -49,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "0",
       },
+      status_spt: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       upload: {
         type: DataTypes.STRING,
       },

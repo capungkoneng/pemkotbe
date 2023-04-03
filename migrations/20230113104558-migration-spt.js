@@ -59,6 +59,10 @@ module.exports = {
           type: Sequelize.STRING,
           defaultValue: "0",
         },
+        status_spd: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,

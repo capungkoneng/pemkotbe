@@ -14,54 +14,24 @@ module.exports = {
           type: Sequelize.STRING,
           unique: true,
         },
-        nik_penerima: {
+        kode_urusan: {
           type: Sequelize.STRING,
-          unique: true,
+          references: {
+            model: "urusan",
+            key: "kode_urusan",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
-        nama_penerima: {
-          type: Sequelize.STRING,
-        },
-        jumlah: {
-          type: Sequelize.BIGINT,
-          defaultValue: 0,
-        },
-        tgl_kwt: {
-          type: Sequelize.DATE,
-        },
-        tgl: {
-          type: Sequelize.DATE,
-        },
-        no_kwt: {
-          type: Sequelize.STRING,
-          unique: true,
-        },
-        nama_bank: {
-          type: Sequelize.STRING,
-        },
-        nama_rek: {
-          type: Sequelize.STRING,
-        },
-        no_rek: {
-          type: Sequelize.STRING,
-          unique: true,
-        },
-        tujuan: {
-          type: Sequelize.STRING,
-        },
-        kegiatan: {
-          type: Sequelize.STRING,
-        },
-        sub_kegiatan: {
-          type: Sequelize.STRING,
-        },
-        kode_rek_dpa: {
-          type: Sequelize.STRING,
-        },
-        tahun_anggaran: {
-          type: Sequelize.STRING,
-        },
-        uraian_pembayaran: {
-          type: Sequelize.STRING,
+        psppd_id: {
+          type: Sequelize.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          references: {
+            model: "psppd",
+            key: "id",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         createdAt: {
           allowNull: false,
@@ -77,13 +47,7 @@ module.exports = {
         },
       })
       .then(() =>
-        queryInterface.addIndex("np2d", [
-          "id",
-          "no_np2d",
-          "nama_penerima",
-          "nik_penerima",
-          "no_kwt",
-        ])
+        queryInterface.addIndex("np2d", ["id", "no_np2d", "kode_urusan"])
       );
   },
 

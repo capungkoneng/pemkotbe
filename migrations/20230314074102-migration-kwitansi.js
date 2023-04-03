@@ -3,21 +3,16 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface
-      .createTable("vdbsppd", {
+      .createTable("kwitansi", {
         id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,
           primaryKey: true,
           allowNull: false,
         },
-        uraian: {
+        no_kwt: {
           type: Sequelize.STRING,
-        },
-        nilai_rill: {
-          type: Sequelize.STRING,
-        },
-        nilai_disetujui: {
-          type: Sequelize.STRING,
+          unique: true,
         },
         psppd_id: {
           type: Sequelize.UUID,
@@ -37,11 +32,15 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
+        deletedAt: {
+          allowNull: true,
+          type: Sequelize.DATE,
+        },
       })
-      .then(() => queryInterface.addIndex("vdbsppd", ["id", "uraian"]));
+      .then(() => queryInterface.addIndex("kwitansi", ["id", "no_kwt"]));
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("vdbsppd");
+    await queryInterface.dropTable("kwitansi");
   },
 };

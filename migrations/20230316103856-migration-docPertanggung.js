@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
-      psppd: {
+      psppd_id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         references: {

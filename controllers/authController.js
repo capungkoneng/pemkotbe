@@ -48,14 +48,14 @@ const loginUsers = async (req, res) => {
     }
 
     if (!user) {
-      return res.status(403).json("username tidak ada / belum daftar");
+      return res.status(403).json({msg: "User not found"});
     }
     const passwordIsValid = await argon2.verify(
       user.password,
       req.body.password
     );
     if (!passwordIsValid) {
-      return res.status(403).json("salah password");
+      return res.status(403).json({msg: "Invalid password"});
     }
     const token = auth.generateToken(user.id);
     const userSession = await model.session.create({

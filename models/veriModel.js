@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const vdsppd = sequelize.define(
-    "vdsppd",
+  const vd = sequelize.define(
+    "vd",
     {
       id: {
         type: DataTypes.UUID,
@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       psppd_id: {
         type: DataTypes.UUID,
       },
+      verify: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: null,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -25,17 +30,22 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {
-      tableName: "vdsppd",
+      tableName: "vd",
+      timestamp: true,
+      paranoid: true,
     }
   );
-  vdsppd.associate = (models) => {
-    vdsppd.belongsTo(models.psppd, {
+  vd.associate = (models) => {
+    vd.belongsTo(models.psppd, {
       foreignKey: "id",
-      sourceKey: "psppd_id",
-      as: "vdsppd",
+      as: "veri",
     });
   };
-  return vdsppd;
+  return vd;
 };

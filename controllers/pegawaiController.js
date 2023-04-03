@@ -30,6 +30,11 @@ const getAllPegawai = async (req, res) => {
                 [Op.like]: "%" + search + "%",
               },
             },
+            {
+              bidang: {
+                [Op.like]: "%" + search + "%",
+              },
+            },
           ],
         },
         offset: pagination.page * pagination.perPage,
@@ -108,6 +113,102 @@ const getAllPegawaiKepalaBidang = async (req, res) => {
   }
 };
 
+const getAllPegawaiKuasaAnggaran = async (req, res) => {
+  try {
+    results = await model.pegawai.findAll({
+      where: {
+        jabatan: "Kuasa Pengguna Anggaran",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get Kuasa Pengguna Anggaran",
+        result: results,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getAllPegawaiPejabatTeknis = async (req, res) => {
+  try {
+    results = await model.pegawai.findAll({
+      where: {
+        jabatan: "Pejabat Pelaksana Teknis Kegiatan",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get Pejabat Pelaksana Teknis Kegiatan",
+        result: results,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getAllPegawaiPejabatPenataSkkpd = async (req, res) => {
+  try {
+    results = await model.pegawai.findAll({
+      where: {
+        jabatan: "Pejabat Penatausahaan Keuangan SKPD",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get Pejabat Penatausahaan Keuangan SKPD",
+        result: results,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
+const getAllPegawaiBendahara = async (req, res) => {
+  try {
+    results = await model.pegawai.findAll({
+      where: {
+        jabatan: "Bendahara Pengeluaran Pembantu",
+      },
+    });
+    if (results.length > 0) {
+      return res.status(200).json({
+        success: true,
+        massage: "Get Bendahara Pengeluaran Pembantus",
+        result: results,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        massage: "No data",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ masagge: error.message });
+  }
+};
+
 const addPegawai = async (req, res) => {
   try {
     // create transaction
@@ -135,7 +236,7 @@ const addPegawai = async (req, res) => {
     const hashpass = await argon2.hash(req.body.nip);
     await model.user.create({
       role_name: "Pegawai",
-      username: req.body.nip.toS,
+      username: req.body.nip,
       password: hashpass,
       email: req.body.email,
       phone: req.body.phone,
@@ -291,4 +392,8 @@ module.exports = {
   getAllPegawaiJabatan,
   getAllPegawaiKepala,
   getAllPegawaiKepalaBidang,
+  getAllPegawaiKuasaAnggaran,
+  getAllPegawaiPejabatTeknis,
+  getAllPegawaiPejabatPenataSkkpd,
+  getAllPegawaiBendahara,
 };

@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         defaultValue: "0",
       },
+      status_spd: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -75,6 +79,10 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "kegiatan_id",
     });
     spt.belongsTo(models.spd, {
+      foreignKey: "no_spt",
+      targetKey: "no_spt",
+    });
+    spt.belongsTo(models.psppd, {
       foreignKey: "no_spt",
       targetKey: "no_spt",
     });

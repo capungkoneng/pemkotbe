@@ -21,12 +21,76 @@ const getAllNp2d = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            nama_penerima: {
+            no_np2d: {
               [Op.like]: "%" + search + "%",
             },
           },
         ],
       },
+      include: [
+        {
+          model: model.urusan,
+          include: [
+            {
+              model: model.program,
+              include: [
+                {
+                  model: model.kegiatanAnggaran,
+                  include: [
+                    {
+                      model: model.SubkegiatanAnggaran,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              model: model.AnggaranUrusan,
+              include: [
+                {
+                  model: model.sumberPen,
+                  include: [
+                    {
+                      model: model.jumPen,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          model: model.psppd,
+          include: [
+            {
+              model: model.spt,
+              include: [
+                {
+                  model: model.kegiatan,
+                  include: [
+                    {
+                      model: model.lsnamajbatan,
+                      as: "lsnamajbatan",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              model: model.rincianpsppd,
+              as: "rincianpsppd",
+              include: [
+                {
+                  model: model.rekeningAng,
+                },
+              ],
+            },
+            {
+              model: model.pegawai,
+            },
+          ],
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
@@ -44,7 +108,7 @@ const getAllNp2d = async (req, res) => {
         previouspage: pagination.prev(),
       });
     } else {
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         massage: "No data",
       });
@@ -61,28 +125,9 @@ const addNp2d = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.np2d.create(
-      {
-        id: uuidv4(),
-        no_np2d: req.body.no_np2d,
-        nik_penerima: req.body.nik_penerima,
-        nama_penerima: req.body.nama_penerima,
-        jumlah: req.body.jumlah,
-        tgl_kwt: req.body.tgl_kwt,
-        tgl: req.body.tgl,
-        no_kwt: req.body.no_kwt,
-        nama_bank: req.body.nama_bank,
-        nama_rek: req.body.nama_rek,
-        no_rek: req.body.no_rek,
-        tujuan: req.body.tujuan,
-        kegiatan: req.body.tujuan,
-        sub_kegiatan: req.body.sub_kegiatan,
-        kode_rek_dpa: req.body.kode_rek_dpa,
-        tahun_anggaran: req.body.tahun_anggaran,
-        uraian_pembayaran: req.body.uraian_pembayaran,
-      },
-      { transaction: transaction.data }
-    );
+    const result = await model.np2d.create(req.body, {
+      transaction: transaction.data,
+    });
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {
@@ -207,6 +252,7 @@ const getOneNp2d = async (req, res) => {
     res.status(500).json({ masagge: error.message });
   }
 };
+
 module.exports = {
   getAllNp2d,
   addNp2d,

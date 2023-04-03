@@ -21,7 +21,7 @@ const getAllKwitansi = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            nama: {
+            no_kwt: {
               [Op.like]: "%" + search + "%",
             },
           },
@@ -29,8 +29,32 @@ const getAllKwitansi = async (req, res) => {
       },
       include: [
         {
-          model: model.vkwitansi,
-          as: "vkwitansi",
+          model: model.psppd,
+          include: [
+            {
+              model: model.spt,
+              include: [
+                {
+                  model: model.kegiatan,
+                  include: [
+                    {
+                      model: model.lsnamajbatan,
+                      as: "lsnamajbatan",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              model: model.rincianpsppd,
+              as: "rincianpsppd",
+              include: [
+                {
+                  model: model.rekeningAng,
+                },
+              ],
+            },
+          ],
         },
       ],
       offset: pagination.page * pagination.perPage,
@@ -67,30 +91,9 @@ const addKwintasi = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.kwitansi.create(
-      {
-        id: uuidv4(),
-        no_spd: req.body.no_spd,
-        no_spt: req.body.no_spt,
-        nik: req.body.nik,
-        nama: req.body.nama,
-        tgl: req.body.tgl,
-        no_kwt: req.body.no_kwt,
-        tgl_berangkat: req.body.tgl_berangkat,
-        tgl_mulai: req.body.tgl_mulai,
-        tgl_pulang: req.body.tgl_pulang,
-        tujuan: req.body.tujuan,
-        kegiatan: req.body.kegiatan,
-        sub_kegiatan: req.body.sub_kegiatan,
-        kode_rek: req.body.kode_rek,
-        bidang: req.body.bidang,
-        vkwitansi: req.body.vkwitansi,
-      },
-      {
-        include: ["vkwitansi"],
-      },
-      { transaction: transaction.data }
-    );
+    const result = await model.kwitansi.create(req.body, {
+      transaction: transaction.data,
+    });
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {
@@ -220,5 +223,5 @@ module.exports = {
   addKwintasi,
   updateKwintasi,
   deleteKwintasi,
-  getOneKwintasi
+  getOneKwintasi,
 };

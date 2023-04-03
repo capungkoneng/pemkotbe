@@ -21,7 +21,7 @@ const getAllKegiatan = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            keperluan: {
+            no_surat: {
               [Op.like]: "%" + search + "%",
             },
           },
@@ -64,9 +64,14 @@ const getAllKegiatanByStat = async (req, res) => {
   try {
     const search = req.query.search || "";
     const results = await model.kegiatan.findAll({
-      where: {
-        status: "3",
-      },
+      where: [
+        {
+          status: "3",
+        },
+        {
+          status_spt: false,
+        }
+      ],
     });
     if (results.length > 0) {
       return res.status(200).json({
@@ -337,5 +342,5 @@ module.exports = {
   getOneKegiatan,
   addKegiatanNamaPeg,
   getOneKegiatanNamaPeg,
-  getAllKegiatanByStat
+  getAllKegiatanByStat,
 };

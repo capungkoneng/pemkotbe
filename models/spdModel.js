@@ -59,6 +59,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "no_spt",
       sourceKey: "no_spt",
     });
+    spd.belongsTo(models.psppd, {
+      foreignKey: "no_spd",
+      targetKey: "no_spd",
+    });
   };
 
   return spd;

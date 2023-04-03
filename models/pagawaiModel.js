@@ -64,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
       paranoid: true,
     }
   );
-
+  pegawai.associate = (models) => {
+    pegawai.belongsTo(models.psppd, {
+      foreignKey: "nip",
+    });
+  };
   return pegawai;
 };

@@ -21,6 +21,9 @@ const getAllSpt = async (req, res) => {
     const totalRows = await model.spt.count();
     if (req.query.page === undefined) {
       results = await model.spt.findAll({
+        where: {
+          status_spd: false,
+        },
         include: [
           {
             model: model.kegiatan,
@@ -109,6 +112,14 @@ const addSpt = async (req, res) => {
         status: req.body.status,
       },
       { transaction: transaction.data }
+    );
+    await model.kegiatan.update(
+      {
+        status_spt: true,
+      },
+      {
+        where: { id: req.body.kegiatan_id },
+      }
     );
     // commit transaction
     const commit = await t.commit(transaction.data);
@@ -248,11 +259,14 @@ const getOneSpt = async (req, res) => {
 
 const getSptByuser = async (req, res) => {
   try {
-    const result = await model.spt.findOne({
+    const result = await model.spt.findAll({
       where: {
         status: "0",
       },
       include: [
+        {
+          model: model.spd,
+        },
         {
           model: model.kegiatan,
           include: [
@@ -281,5 +295,5 @@ module.exports = {
   updateSpt,
   deleteSpt,
   getOneSpt,
-  getSptByuser
+  getSptByuser,
 };

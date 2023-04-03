@@ -46,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kode_urusan",
       targetKey: "kode_urusan",
     });
+    urusan.belongsTo(models.np2d, {
+      foreignKey: "kode_urusan",
+      targetKey: "kode_urusan",
+    });
   };
   return urusan;
 };

@@ -12,53 +12,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: true,
       },
-      no_np2d: {
-        type: DataTypes.STRING,
-        unique: true,
-      },
-      nik_penerima: {
-        type: DataTypes.STRING,
-        unique: true,
-      },
-      nama_penerima: {
-        type: DataTypes.STRING,
-      },
-      jumlah: {
-        type: DataTypes.BIGINT,
-      },
-      tgl_np2d: {
-        type: DataTypes.DATE,
-      },
-      tgl: {
-        type: DataTypes.DATE,
-      },
-      nama_bank: {
-        type: DataTypes.STRING,
-      },
-      nama_rek: {
-        type: DataTypes.STRING,
-      },
-      no_rek: {
-        type: DataTypes.STRING,
-        unique: true,
-      },
-      tujuan: {
-        type: DataTypes.STRING,
-      },
-      kegiatan: {
-        type: DataTypes.STRING,
-      },
-      sub_kegiatan: {
-        type: DataTypes.STRING,
-      },
-      kode_rek_dpa: {
-        type: DataTypes.STRING,
-      },
-      tahun_anggaran: {
-        type: DataTypes.STRING,
-      },
-      uraian_pembayaran: {
-        type: DataTypes.STRING,
+      psppd_id: {
+        type: DataTypes.UUID,
       },
       createdAt: {
         allowNull: false,
@@ -79,5 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       paranoid: true,
     }
   );
+  sp2d.associate = (models) => {
+    sp2d.hasOne(models.psppd, {
+      foreignKey: "id",
+      sourceKey: "psppd_id",
+    });
+  };
   return sp2d;
 };

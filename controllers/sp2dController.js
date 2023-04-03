@@ -21,12 +21,45 @@ const getAllSp2d = async (req, res) => {
       where: {
         [Op.or]: [
           {
-            nama_penerima: {
+            no_sp2d: {
               [Op.like]: "%" + search + "%",
             },
           },
         ],
       },
+      include: [
+        {
+          model: model.psppd,
+          include: [
+            {
+              model: model.spt,
+              include: [
+                {
+                  model: model.kegiatan,
+                  include: [
+                    {
+                      model: model.lsnamajbatan,
+                      as: "lsnamajbatan",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              model: model.rincianpsppd,
+              as: "rincianpsppd",
+              include: [
+                {
+                  model: model.rekeningAng,
+                },
+              ],
+            },
+            {
+              model: model.pegawai,
+            },
+          ],
+        },
+      ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,
       order: [["createdAt", "DESC"]],
@@ -34,7 +67,7 @@ const getAllSp2d = async (req, res) => {
     if (results.length > 0) {
       return res.status(200).json({
         success: true,
-        massage: "Get All Biaya Penginapan",
+        massage: "Get All Sp2d",
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
@@ -61,28 +94,9 @@ const addSp2d = async (req, res) => {
     if (!transaction.status && transaction.error) {
       throw transaction.error;
     }
-    const result = await model.sp2d.create(
-      {
-        id: uuidv4(),
-        no_sp2d: req.body.no_sp2d,
-        no_np2d: req.body.no_np2d,
-        nik_penerima: req.body.nik_penerima,
-        nama_penerima: req.body.nama_penerima,
-        jumlah: req.body.jumlah,
-        tgl_np2d: req.body.tgl_np2d,
-        tgl: req.body.tgl,
-        nama_bank: req.body.nama_bank,
-        nama_rek: req.body.nama_rek,
-        no_rek: req.body.no_rek,
-        tujuan: req.body.tujuan,
-        kegiatan: req.body.tujuan,
-        sub_kegiatan: req.body.sub_kegiatan,
-        kode_rek_dpa: req.body.kode_rek_dpa,
-        tahun_anggaran: req.body.tahun_anggaran,
-        uraian_pembayaran: req.body.uraian_pembayaran,
-      },
-      { transaction: transaction.data }
-    );
+    const result = await model.sp2d.create(req.body, {
+      transaction: transaction.data,
+    });
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {

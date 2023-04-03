@@ -46,6 +46,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "kode",
       targetKey: "kode",
     });
+    rekeningAng.belongsTo(models.rincianpsppd, {
+      foreignKey: "kode",
+      sourceKey: "kode",
+    });
   };
   return rekeningAng;
 };

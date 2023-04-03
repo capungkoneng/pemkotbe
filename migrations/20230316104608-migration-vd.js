@@ -2,12 +2,18 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("rincianpsppd", {
+    await queryInterface.createTable("vd", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         allowNull: false,
+      },
+      nama_dokumen: {
+        type: Sequelize.STRING,
+      },
+      keterangan: {
+        type: Sequelize.STRING,
       },
       psppd_id: {
         type: Sequelize.UUID,
@@ -18,40 +24,6 @@ module.exports = {
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
-      },
-      kode_rek: {
-        type: Sequelize.STRING,
-        references: {
-          model: "rekeningAng",
-          key: "kode",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
-      keterangan: {
-        type: Sequelize.TEXT,
-      },
-      satuan: {
-        type: Sequelize.STRING,
-      },
-      vol: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      satuan: {
-        type: Sequelize.STRING,
-      },
-      biaya: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      total: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
-      },
-      nilai_disetujui: {
-        type: Sequelize.BIGINT,
-        defaultValue: 0,
       },
       verify: {
         type: Sequelize.BOOLEAN,
@@ -74,6 +46,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("rincianpsppd");
+    await queryInterface.dropTable("vd");
   },
 };

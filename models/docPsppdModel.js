@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       upload: {
         type: DataTypes.TEXT,
       },
-      psppd: {
+      psppd_id: {
         type: DataTypes.UUID,
       },
       createdAt: {
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   docppsppd.associate = (models) => {
     docppsppd.belongsTo(models.psppd, {
       foreignKey: "id",
-      targetKey: "psppd",
+      as: "docppsppd",
     });
   };
   return docppsppd;

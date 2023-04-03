@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
-      psppd: {
+      psppd_id: {
         type: DataTypes.UUID,
       },
       kode_rek: {
@@ -30,6 +30,19 @@ module.exports = (sequelize, DataTypes) => {
       biaya: {
         type: DataTypes.BIGINT,
         defaultValue: 0,
+      },
+      total: {
+        type: DataTypes.BIGINT,
+        defaultValue: 0,
+      },
+      nilai_disetujui: {
+        type: DataTypes.BIGINT,
+        defaultValue: 0,
+      },
+      verify: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: null,
       },
       createdAt: {
         allowNull: false,
@@ -53,7 +66,11 @@ module.exports = (sequelize, DataTypes) => {
   rincianpsppd.associate = (models) => {
     rincianpsppd.belongsTo(models.psppd, {
       foreignKey: "id",
-      targetKey: "psppd",
+      as: "rincianpsppd",
+    });
+    rincianpsppd.hasOne(models.rekeningAng, {
+      foreignKey: "kode",
+      sourceKey: "kode_rek",
     });
   };
   return rincianpsppd;

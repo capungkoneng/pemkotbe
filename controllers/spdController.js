@@ -93,6 +93,14 @@ const addSpd = async (req, res) => {
       },
       { transaction: transaction.data }
     );
+    await model.spt.update(
+      {
+        status_spd: true,
+      },
+      {
+        where: { no_spt: req.body.no_spt },
+      }
+    );
     // commit transaction
     const commit = await t.commit(transaction.data);
     if (!commit.status && commit.error) {

@@ -12,18 +12,33 @@ module.exports = {
         },
         no_spd: {
           type: Sequelize.STRING,
-          unique: true,
+          references: {
+            model: "spd",
+            key: "no_spd",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         nik: {
           type: Sequelize.STRING,
-          unique: true,
+          references: {
+            model: "pegawai",
+            key: "nip",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         nama: {
           type: Sequelize.STRING,
         },
         no_spt: {
           type: Sequelize.STRING,
-          unique: true,
+          references: {
+            model: "spt",
+            key: "no_spt",
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
         },
         tgl_berangkat: {
           type: Sequelize.DATE,
