@@ -25,6 +25,11 @@ const getAllKegiatan = async (req, res) => {
               [Op.like]: "%" + search + "%",
             },
           },
+          {
+            keperluan: {
+              [Op.like]: "%" + search + "%",
+            },
+          },
         ],
       },
       include: [
@@ -70,7 +75,7 @@ const getAllKegiatanByStat = async (req, res) => {
         },
         {
           status_spt: false,
-        }
+        },
       ],
     });
     if (results.length > 0) {

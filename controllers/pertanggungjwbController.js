@@ -66,6 +66,11 @@ const getAllPsppd = async (req, res) => {
                 [Op.like]: "%" + search + "%",
               },
             },
+            {
+              nik: {
+                [Op.like]: "%" + search + "%",
+              },
+            },
           ],
         },
         include: [
