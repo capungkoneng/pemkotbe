@@ -8,7 +8,7 @@ module.exports = {
       [
         {
           id: uuidv4(),
-          nama: "Ir. YOSEPHINA DEWANTI, MM",
+          nama: "Ir. Yosephina Dewanti, MM",
           nip: "196703221992032005",
           gol: "IV/b",
           jabatan: "Sekretaris",
@@ -19,7 +19,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "TITA MARIAM, S.Pt., MM",
+          nama: "Tita Mariam, S.Pt., MM",
           nip: "197007061998032006",
           gol: "IV/b",
           jabatan: "Kepala Dinas Pangan dan Pertanian",
@@ -30,7 +30,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "HENHEN SUHENDAR, S.Sos., MM",
+          nama: "Henhen Suhendar, S.Sos., MM",
           nip: "196603081990031010",
           gol: "IV/a",
           jabatan: "Kepala UPTD Balai Benih Ikan Air Tawar",
@@ -41,7 +41,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "MITA MUSTIKASARI, S.Pt., MM",
+          nama: "Mita Mustikasari, S.Pt., MM",
           nip: "197005171999032004",
           gol: "IV/a",
           jabatan: "Kepala Bidang Pertanian dan Perikanan",
@@ -52,7 +52,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "Dra. ERNA KURNIATI, M.Si",
+          nama: "Dra. Erna Kurniati, M.Si",
           nip: "196610111992032005",
           gol: "IV/a",
           jabatan: "Perencana Ahli Muda",
@@ -63,7 +63,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "TUTUSARI, SS., M.Si",
+          nama: "Tutusari, SS., M.Si",
           nip: "197403311998032005",
           gol: "IV/a",
           jabatan: "Kepala Sub Bagian Umum dan Kepegawaian",
@@ -74,7 +74,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "drh. IRFAN FAZAR RAMADHAN",
+          nama: "drh. Irfan Fazar Ramadhan",
           nip: "198007162005011006",
           gol: "IV/a",
           jabatan: "Kepala UPTD Puskeswan",
@@ -85,7 +85,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "drh. RR. RETNO WULAN",
+          nama: "drh. RR. Retno Wulan",
           nip: "198205022009022004",
           gol: "IV/a",
           jabatan: "Medik Veteriner Ahli Muda",
@@ -96,7 +96,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "SITI RAKHMAH TENRISUI PAKKI, S.T., M.E.",
+          nama: "Siti Rakhmah Tenrisui Pakki, S.T., M.E.",
           nip: "197607282005012007",
           gol: "IV/a",
           jabatan: "Analis Kebijakan Ahli Muda",
@@ -107,7 +107,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "DADAN SAEPULOH, ST",
+          nama: "Dadan Saepuloh, ST",
           nip: "196911011997031005",
           gol: "IV/a",
           jabatan: "Kepala Bidang Ketahanan Pangan",
@@ -118,7 +118,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ATI LISTIANAWATI, S.Pt",
+          nama: "Ati Listianawati, S.Pt",
           nip: "197105181998032004",
           gol: "III/d",
           jabatan: "Kepala Seksi Perikanan",
@@ -129,7 +129,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "Ir. NURWAHIDAH",
+          nama: "Ir. Nurwahidah",
           nip: "197008151994032008",
           gol: "III/d",
           jabatan: "Pengadministrasi Koleksi Tumbuhan Seksi Pertanian",
@@ -140,7 +140,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "AGUS MAMIDIN PARID, SP",
+          nama: "Agus Mamidin Parid, SP",
           nip: "197005252007011019",
           gol: "III/d",
           jabatan: "Analis Ketahanan Pangan Ahli Muda",
@@ -151,7 +151,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "DIEN ANDRIANI, SKH",
+          nama: "Dien Andriani, SKH",
           nip: "197805052001122006",
           gol: "III/d",
           jabatan: "Analis Ketahanan Pangan Ahli Muda",
@@ -162,7 +162,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ARI SUSANTO, SP",
+          nama: "Ari Susanto, SP",
           nip: "197107082008011004",
           gol: "III/d",
           jabatan: "Kepala Sub Bagian TU UPTD Puskeswan",
@@ -173,7 +173,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "SANDI ADI WINATA, S.Pi",
+          nama: "Sandi Adi Winata, S.Pi",
           nip: "198106112010011015",
           gol: "III/d",
           jabatan: "Analis Budidaya Perikanan",
@@ -184,7 +184,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ETIK KARTIKASARI, A.Md",
+          nama: "Etik Kartikasari, A.Md",
           nip: "196712171996032001",
           gol: "III/c",
           jabatan: "Pengadministrasi Umum",
@@ -195,7 +195,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "TRULY RAHMAWATI, S.Pt., M.Si",
+          nama: "Truly Rahmawati, S.Pt., M.Si",
           nip: "198012092005012010",
           gol: "III/c",
           jabatan: "Kepala Sub Bagian TU UPTD Puskeswan",
@@ -206,7 +206,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ENDANG WIDI ASTUTI, SP., M.P.",
+          nama: "Endang Widi Astuti, SP., M.P.",
           nip: "198001252012122001",
           gol: "III/c",
           jabatan: "Analis Informasi Hasil Pertanian",
@@ -217,7 +217,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ENDEN ROSDIYANI, S.IP",
+          nama: "Enden Rosdiyani, S.IP",
           nip: "197906122010012009",
           gol: "III/c",
           jabatan: "Analis Pangan",
@@ -228,7 +228,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "LELA PURNAMASARI, SAB",
+          nama: "Lela Purnamasari, SAB",
           nip: "198404202010012012",
           gol: "III/c",
           jabatan: "Analis Laporan Keuangan",
@@ -239,7 +239,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "DEVI KURNIAWAN, A.Md",
+          nama: "Devi Kurniawan, A.Md",
           nip: "198107182006041007",
           gol: "III/c",
           jabatan: "Analis Perencanaan, Evaluasi dan Pelaporan",
@@ -250,7 +250,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "RIMBA LIMBANGANI, A.Md",
+          nama: "Rimba Limbangani, A.Md",
           nip: "197606022007011009",
           gol: "III/b",
           jabatan: "Pengelola Teknologi Pascapanen",
@@ -261,7 +261,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "EKA MUSTIKA, S.T.",
+          nama: "Eka Mustika, S.T.",
           nip: "198108202014092002",
           gol: "III/c",
           jabatan: "Analis Pangan",
@@ -272,7 +272,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "AHMAD MANSUR, A.Md",
+          nama: "Ahmad Mansur, A.Md",
           nip: "197808062008011006",
           gol: "III/b",
           jabatan: "Analis Perikanan Budidaya ",
@@ -283,7 +283,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "IYAN MULYANA, S.IP",
+          nama: "Iyan Mulyana, S.IP",
           nip: "196803182007011008",
           gol: "III/b",
           jabatan: "Bendahara (Penerimaan)",
@@ -294,7 +294,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "YUYUN EKA FITRIANA, A.Md",
+          nama: "Yuyun Eka Fitriani, A.Md",
           nip: "198805242010122002",
           gol: "III/b",
           jabatan: "Pengelola Data",
@@ -305,7 +305,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "drh. MUHAMMAD FAIZ LABIB",
+          nama: "drh. Muhammad Faiz Labib",
           nip: "199610072022021001",
           gol: "III/b",
           jabatan: "",
@@ -316,7 +316,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "NIA FATMAWATI HADIYAT, S.Kom., M.A.P.",
+          nama: "Nia Fatmawati Hadiyat, S.Kom., M.A.P.",
           nip: "197709162011012002",
           gol: "III/a",
           jabatan: "Analis Rencana Program dan Kegiatan",
@@ -327,7 +327,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ASEP GUNAWAN, SE",
+          nama: "Asep Gunawan, SE",
           nip: "198107152008011005",
           gol: "III/a",
           jabatan: "Pengawas Sanitasi Usaha Peternakan dan Kesmavet",
@@ -338,7 +338,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "AGUS, A.Md",
+          nama: "Agus, A.Md",
           nip: "196901082007011011",
           gol: "III/a",
           jabatan:
@@ -350,7 +350,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ERNI NURLAELAWATI, S.IP.",
+          nama: "Erni Nurlaelawati, S.IP.",
           nip: "198011192009012003",
           gol: "III/a",
           jabatan: "Bendahara (Pengeluaran)",
@@ -361,7 +361,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "GALIH ISMAYANTI, S.P.",
+          nama: "Galih Ismayanti, S.P.",
           nip: "198810312010012001",
           gol: "III/a",
           jabatan: "Penyuluh Pertanian Terampil Mahir",
@@ -372,7 +372,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "NUNUY NUR AFIANI, S.P.",
+          nama: "Nunuy Nur Afiani, S.P.",
           nip: "198302012017062001",
           gol: "III/a",
           jabatan: "Penyuluh Pertanian Terampil Mahir",
@@ -383,7 +383,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "INDRA PURNAMA, A.Md",
+          nama: "Indra Purnama, A.Md",
           nip: "198002072015021001",
           gol: "II/d",
           jabatan: "Analis Sumber Daya Manusia Aparatur",
@@ -394,7 +394,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ARIE BASUKI",
+          nama: "Arie Basuki",
           nip: "197501182007011007",
           gol: "II/d",
           jabatan: "Pengelola Keuangan",
@@ -405,7 +405,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "RAMDANI",
+          nama: "Ramdani",
           nip: "197708222007011005",
           gol: "II/d",
           jabatan: "Pengelola Keuangan",
@@ -416,7 +416,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "KUS SETIAWAN SIDIK AHMAD",
+          nama: "Kus Setiawan Sidik Ahmad",
           nip: "198206172010011007",
           gol: "II/d",
           jabatan: "Penyuluh Pertanian Terampil",
@@ -427,7 +427,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "RANI KURNIATI, A.Md",
+          nama: "Rani Kurniati, A.Md",
           nip: "198109232017062002",
           gol: "II/d",
           jabatan: "Penyuluh Pertanian Terampil",
@@ -438,7 +438,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "AGUS HADIYANTO",
+          nama: "Agus Hadiyanto",
           nip: "198105062010011001",
           gol: "II/d",
           jabatan: "Kustodian Kekayaan Negara",
@@ -449,7 +449,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "KUSNADI",
+          nama: "Kusnadi",
           nip: "197002252009011004",
           gol: "II/c",
           jabatan: "Pengelola Statistik Perikanan",
@@ -460,7 +460,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "JANA",
+          nama: "Jana",
           nip: "198006062009011004",
           gol: "II/c",
           jabatan: "Pengadministrasi Umum",
@@ -471,7 +471,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ASEP SAEPUDIN",
+          nama: "Asep Saepudin",
           nip: "196906102007011014",
           gol: "II/c",
           jabatan: "Pengelola Ketahanan Pangan",
@@ -482,7 +482,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "ADE ARIESTA PUTRI, A.Md.",
+          nama: "Ade Ariesta Putri, A.Md.",
           nip: "199503282022022002",
           gol: "II/c",
           jabatan: "",
@@ -493,7 +493,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "MARYAMI",
+          nama: "Maryami",
           nip: "197306162009012002",
           gol: "II/c",
           jabatan: "Pengadministrasi Umum",
@@ -504,7 +504,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "RAHMAT",
+          nama: "Rahmat",
           nip: "197707112007011011",
           gol: "II/b",
           jabatan: "Pengadministrasi Umum",
@@ -515,7 +515,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "SAMSUDIN",
+          nama: "Samsudin",
           nip: "197505102009011005",
           gol: "I/d",
           jabatan: "Teknisi Instalasi Budidaya",
@@ -526,7 +526,7 @@ module.exports = {
         },
         {
           id: uuidv4(),
-          nama: "OTANG SURYANA",
+          nama: "Otang Suryana",
           nip: "196902152012121001",
           gol: "I/c",
           jabatan: "Pramu Kebersihan",
