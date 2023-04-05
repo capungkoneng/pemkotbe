@@ -71,11 +71,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          nama: "Analis Ketahanan Pangan Ahli Muda",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           nama: "Kepala Sub Bagian TU UPTD Puskeswan",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -87,11 +82,6 @@ module.exports = {
         },
         {
           nama: "Pengadministrasi Umum",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Kepala Sub Bagian TU UPTD Puskeswan",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -121,12 +111,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          nama: "Analis Pangan",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Analis Perikanan Budidaya ",
+          nama: "Analis Perikanan Budidaya",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -151,18 +136,12 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          nama:
-            "Pengelola Kesehatan Hewan dan Kesehatan Masyarakat Veteriner",
+          nama: "Pengelola Kesehatan Hewan dan Kesehatan Masyarakat Veteriner",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           nama: "Bendahara (Pengeluaran)",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Penyuluh Pertanian Terampil Mahir",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -182,21 +161,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          nama: "Pengelola Keuangan",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Penyuluh Pertanian Terampil",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Penyuluh Pertanian Terampil",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           nama: "Kustodian Kekayaan Negara",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -207,22 +171,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          nama: "Pengadministrasi Umum",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           nama: "Pengelola Ketahanan Pangan",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Pengadministrasi Umum",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          nama: "Pengadministrasi Umum",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
