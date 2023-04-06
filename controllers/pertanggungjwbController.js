@@ -339,6 +339,7 @@ const updatePsppd = async (req, res) => {
     const updateVerify = req.body.map((updateByveri) => {
       return {
         id: updateByveri.id,
+        kode: updateByveri.kode,
         nilai_disetujui: updateByveri.nilai_disetujui,
         verify: updateByveri.verify,
       };

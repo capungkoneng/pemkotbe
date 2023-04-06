@@ -37,6 +37,7 @@ const AnggaranUrusanController = require("../controllers/anggaranUrusanControlle
 const masterRekeningAnggaranController = require("../controllers/masterRekeningAngController");
 const rekAnggaranController = require("../controllers/rekAnggaranController");
 const userController = require("../controllers/userController");
+const rekapLaporanController = require("../controllers/rekapLaporanController");
 /****************************AUTH********************************* */
 
 router.post("/signup", authController.registerNewUsers);
@@ -1068,5 +1069,20 @@ router.get(
 );
 
 /***************************RekeningAnggaranUrusan********************************* */
+
+/***************************LAPORAN********************************* */
+router.get(
+  "/laporanpegawai",
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
+  rekapLaporanController.getAllPageLaporan
+);
+
+router.get(
+  "/laporanpegawaianggaran",
+  auth.authToken({ admin: "admin", hrd: "hrd", pegawai: "Pegawai" }),
+  rekapLaporanController.getAllPageLaporanAnggaran
+);
+
+/***************************LAPORAN********************************* */
 
 module.exports = router;

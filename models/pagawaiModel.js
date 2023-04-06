@@ -65,8 +65,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   pegawai.associate = (models) => {
-    pegawai.belongsTo(models.psppd, {
-      foreignKey: "nip",
+    pegawai.hasOne(models.psppd, {
+      foreignKey: "nik",
+      sourceKey: "nip"
     });
   };
   return pegawai;
