@@ -68,9 +68,8 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id",
       as: "rincianpsppd",
     });
-    rincianpsppd.hasOne(models.rekeningAng, {
-      foreignKey: "kode",
-      sourceKey: "kode_rek",
+    rincianpsppd.belongsTo(models.rekeningAng, {
+      foreignKey: "kode_rek",
     });
   };
   return rincianpsppd;

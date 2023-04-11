@@ -41,9 +41,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   rekAnggaran.associate = (models) => {
-    rekAnggaran.hasOne(models.rekeningAng, {
+    rekAnggaran.belongsTo(models.rekeningAng, {
       foreignKey: "kode",
-      sourceKey: "kode",
     });
     rekAnggaran.hasOne(models.sumberPen, {
       foreignKey: "sumberpen_id",

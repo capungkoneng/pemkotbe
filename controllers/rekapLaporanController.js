@@ -113,33 +113,21 @@ const getAllPageLaporanAnggaran = async (req, res) => {
       hostname,
       pathname
     );
-    const results = await model.rekAnggaran.findAll({
+    const results = await model.rekeningAng.findAll({
+      required: true,
       include: [
         {
-          model: model.rekeningAng,
-          required: true,
-        },
-        {
-          model: model.sumberPen,
-          attributes: ["createdAt", "updatedAt"],
-          required: true,
+          model: model.rekAnggaran,
           include: [
             {
-              model: model.jumPen,
-              attributes: ["tahun", "jumlah", "createdAt", "updatedAt"],
-              where: {
-                [Op.or]: [
-                  {
-                    tahun: {
-                      [Op.like]: "%" + search + "%",
-                    },
-                  },
-                ],
-              },
-              required: true,
+              model: model.detailRekAnggaran,
             },
           ],
         },
+        {
+          model: model.rincianpsppd,
+          require: false,
+        }
       ],
       offset: pagination.page * pagination.perPage,
       limit: pagination.perPage,

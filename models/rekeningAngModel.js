@@ -42,12 +42,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   rekeningAng.associate = (models) => {
-    rekeningAng.belongsTo(models.rekAnggaran, {
+    rekeningAng.hasMany(models.rekAnggaran, {
       foreignKey: "kode",
-      targetKey: "kode",
+      sourceKey: "kode",
     });
-    rekeningAng.belongsTo(models.rincianpsppd, {
-      foreignKey: "kode",
+    rekeningAng.hasMany(models.rincianpsppd, {
+      foreignKey: "kode_rek",
       sourceKey: "kode",
     });
   };
