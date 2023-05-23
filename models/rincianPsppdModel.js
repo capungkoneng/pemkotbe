@@ -68,8 +68,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id",
       as: "rincianpsppd",
     });
-    rincianpsppd.belongsTo(models.rekeningAng, {
-      foreignKey: "kode_rek",
+    rincianpsppd.hasMany(models.rekeningAng, {
+      foreignKey: "kode",
+      sourceKey: "kode_rek",
     });
   };
   return rincianpsppd;

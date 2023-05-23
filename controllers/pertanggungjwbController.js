@@ -19,7 +19,7 @@ const getAllPsppd = async (req, res) => {
     let results;
     const totalRows = await model.psppd.count();
     if (req.query.page === undefined) {
-      results = await model.pegawai.findAll({
+      results = await model.psppd.findAll({
         include: [
           {
             model: model.spd,
@@ -200,7 +200,7 @@ const getAllPsppdByNik = async (req, res) => {
         result: results,
         page: pagination.page,
         limit: pagination.perPage,
-        totalData: totalRows,
+        totalData: results.length,
         currentPage: pagination.currentPage,
         nextPage: pagination.next(),
         previouspage: pagination.prev(),

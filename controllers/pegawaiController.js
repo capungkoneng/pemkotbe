@@ -117,7 +117,7 @@ const getAllPegawaiKuasaAnggaran = async (req, res) => {
   try {
     results = await model.pegawai.findAll({
       where: {
-        jabatan: "Kuasa Pengguna Anggaran",
+        bidang: "Sekretariat",
       },
     });
     if (results.length > 0) {
@@ -141,7 +141,7 @@ const getAllPegawaiPejabatTeknis = async (req, res) => {
   try {
     results = await model.pegawai.findAll({
       where: {
-        jabatan: "Pejabat Pelaksana Teknis Kegiatan",
+        bidang: "Sub Bagian Umum dan Kepegawaian",
       },
     });
     if (results.length > 0) {
@@ -189,7 +189,7 @@ const getAllPegawaiBendahara = async (req, res) => {
   try {
     results = await model.pegawai.findAll({
       where: {
-        jabatan: "Bendahara Pengeluaran Pembantu",
+        jabatan: "Pengadministrasi Umum",
       },
     });
     if (results.length > 0) {

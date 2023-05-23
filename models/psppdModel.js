@@ -78,6 +78,10 @@ module.exports = (sequelize, DataTypes) => {
     psppd.belongsTo(models.pegawai, {
       foreignKey: "nik",
     });
+    psppd.hasOne(models.pegawai, {
+      foreignKey: "nip",
+      sourceKey: "nik",
+    });
     psppd.belongsTo(models.kwitansi, {
       foreignKey: "id",
     });
